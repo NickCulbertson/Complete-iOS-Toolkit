@@ -15,6 +15,8 @@
 		5A2A0FA01AD8172F0055C254 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A2A0F9F1AD8172F0055C254 /* Images.xcassets */; };
 		5A2A0FA31AD8172F0055C254 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2A0FA11AD8172F0055C254 /* LaunchScreen.xib */; };
 		5A2A0FAF1AD8172F0055C254 /* Complete_iOS_ToolkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A0FAE1AD8172F0055C254 /* Complete_iOS_ToolkitTests.m */; };
+		5A2A0FB91AD820830055C254 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2A0FB81AD820830055C254 /* menu.png */; };
+		5A2A0FBB1AD829620055C254 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A2A0FBA1AD829620055C254 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		5A2A0FA81AD8172F0055C254 /* Complete iOS ToolkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Complete iOS ToolkitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2A0FAD1AD8172F0055C254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A2A0FAE1AD8172F0055C254 /* Complete_iOS_ToolkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Complete_iOS_ToolkitTests.m; sourceTree = "<group>"; };
+		5A2A0FB81AD820830055C254 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		5A2A0FBA1AD829620055C254 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 				5A2A0F941AD8172F0055C254 /* AppDelegate.m */,
 				5A2A0F991AD8172F0055C254 /* ViewController.h */,
 				5A2A0F9A1AD8172F0055C254 /* ViewController.m */,
+				5A2A0FB81AD820830055C254 /* menu.png */,
+				5A2A0FBA1AD829620055C254 /* background.png */,
 				5A2A0F9C1AD8172F0055C254 /* Main.storyboard */,
 				5A2A0F9F1AD8172F0055C254 /* Images.xcassets */,
 				5A2A0FA11AD8172F0055C254 /* LaunchScreen.xib */,
@@ -202,6 +208,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A2A0FB91AD820830055C254 /* menu.png in Resources */,
+				5A2A0FBB1AD829620055C254 /* background.png in Resources */,
 				5A2A0F9E1AD8172F0055C254 /* Main.storyboard in Resources */,
 				5A2A0FA31AD8172F0055C254 /* LaunchScreen.xib in Resources */,
 				5A2A0FA01AD8172F0055C254 /* Images.xcassets in Resources */,
@@ -420,6 +428,7 @@
 				5A2A0FB41AD8172F0055C254 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A2A0FB51AD8172F0055C254 /* Build configuration list for PBXNativeTarget "Complete iOS ToolkitTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +437,7 @@
 				5A2A0FB71AD8172F0055C254 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
