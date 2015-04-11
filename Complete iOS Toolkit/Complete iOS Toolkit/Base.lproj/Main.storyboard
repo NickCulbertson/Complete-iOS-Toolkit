@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -49,13 +49,19 @@
                                         <state key="normal" backgroundImage="menu.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="MenuAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="mMi-gH-jHR"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="hhX-9J-xL0">
-                                        <rect key="frame" x="283" y="11" width="22" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hhX-9J-xL0">
+                                        <rect key="frame" x="284" y="8" width="28" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
+                                        <state key="normal" backgroundImage="infobut.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="DetailsAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="wOf-3W-BNK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.70588237050000002" blue="0.94117653369999998" alpha="1" colorSpace="deviceRGB"/>
@@ -91,6 +97,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="BackgroundImageView" destination="dfo-f7-EG5" id="eYD-n6-kvZ"/>
+                        <outlet property="DetailsButton" destination="hhX-9J-xL0" id="H44-CS-NKf"/>
+                        <outlet property="HeaderContainer" destination="edg-Qa-Nsh" id="6Qa-BJ-vfN"/>
+                        <outlet property="HeaderLabel" destination="Noe-A8-rhu" id="Gm0-q3-dlC"/>
+                        <outlet property="HeaderShadow" destination="cZD-Il-p8d" id="48w-eH-Ps8"/>
+                        <outlet property="LogoImageView" destination="Ec3-6a-74g" id="DQr-M6-kv8"/>
+                        <outlet property="MenuButton" destination="9ce-5S-eCz" id="eCI-Np-WfY"/>
+                        <outlet property="StatusBar" destination="L6l-ZZ-76s" id="dqm-CQ-TB5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,6 +114,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="infobut.png" width="50" height="50"/>
         <image name="menu.png" width="219" height="256"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

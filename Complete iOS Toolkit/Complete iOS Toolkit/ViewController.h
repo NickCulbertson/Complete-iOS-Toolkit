@@ -10,8 +10,21 @@
 
 @interface ViewController : UIViewController{
     
+    IBOutlet UIImageView *StatusBar;
+    IBOutlet UIImageView *HeaderShadow;
+    IBOutlet UIScrollView *HeaderContainer;
+    IBOutlet UILabel *HeaderLabel;
+    
+    IBOutlet UIButton *MenuButton;
+    IBOutlet UIButton *DetailsButton;
+    
+    IBOutlet UIImageView *LogoImageView;
+    IBOutlet UIImageView *BackgroundImageView;
+    
+    NSArray *SettingsArray;
 }
-
+- (IBAction)MenuAction;
+- (IBAction)DetailsAction;
 
 @end
 
