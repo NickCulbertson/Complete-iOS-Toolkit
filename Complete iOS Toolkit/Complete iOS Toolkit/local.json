@@ -1,14 +1,26 @@
 {
   "AppSettings": [
-                  "hello",
-                  "http://relay.181.fm:8012/",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
-                  "",
+                  {"HeaderColor":"7"},
+                  {"HeaderLabel":"My App"},
+                  {"LogoURL":"http://"},
+                  {"BackgroundURL":"http://"},
                   ""
-                  ]
+                  ],
+    "MenuItems": [
+                  {"MenuTitle":"Facebook",
+                  "MenuLabel":"My Facebook",
+                  "MenuURL":"http://www.facebook.com"},
+                  {"MenuTitle":"Twitter",
+                  "MenuLabel":"My Twitter",
+                  "MenuURL":"http://www.twitter.com"},
+                  {"MenuTitle":"Google",
+                  "MenuLabel":"My Google",
+                  "MenuURL":"http://www.google.com"},
+                  {"MenuTitle":"Youtube",
+                  "MenuLabel":"My Youtube",
+                  "MenuURL":"http://www.youtube.com"},
+                  {"MenuTitle":"Youtube",
+                  "MenuLabel":"My Youtube",
+                  "MenuURL":"http://www.youtube.com"}
+                ]
 }

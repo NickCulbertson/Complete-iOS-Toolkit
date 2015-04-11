@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -67,21 +67,37 @@
                                 <color key="backgroundColor" red="0.0" green="0.70588237050000002" blue="0.94117653369999998" alpha="1" colorSpace="deviceRGB"/>
                             </scrollView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rOY-a2-G0i" userLabel="Website Container">
-                                <rect key="frame" x="320" y="63" width="320" height="505"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="320" y="67" width="320" height="501"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <webView contentMode="scaleToFill" id="UTY-CH-wlp">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="461"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="457"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="DFz-Fp-NZu" id="Kyr-WS-A9e"/>
+                                        </connections>
                                     </webView>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" id="gIX-UZ-8E9">
+                                        <rect key="frame" x="150" y="240" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="6hs-Co-Upb">
-                                        <rect key="frame" x="0.0" y="461" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="457" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <items>
-                                            <barButtonItem title="Item" id="kbe-if-BkL"/>
+                                            <barButtonItem systemItem="rewind" id="kbe-if-BkL">
+                                                <connections>
+                                                    <action selector="goBack" destination="UTY-CH-wlp" id="YRs-gZ-md8"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="fastForward" id="lbf-hG-7Gc">
+                                                <connections>
+                                                    <action selector="goBack" destination="UTY-CH-wlp" id="e8g-PE-oYP"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="d8c-9S-xfp"/>
-                                            <barButtonItem title="Item" id="biz-BH-aY3"/>
+                                            <barButtonItem systemItem="done" id="biz-BH-aY3"/>
                                         </items>
                                     </toolbar>
                                 </subviews>
@@ -93,19 +109,39 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="DFz-Fp-NZu" userLabel="DarkImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="U74-SG-gOJ">
+                                <rect key="frame" x="0.0" y="67" width="160" height="501"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="xBe-fL-cpC"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="eH7-jl-mtk"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="ActivityIndicator" destination="gIX-UZ-8E9" id="bTJ-AU-axu"/>
                         <outlet property="BackgroundImageView" destination="dfo-f7-EG5" id="eYD-n6-kvZ"/>
+                        <outlet property="DarkImageView" destination="DFz-Fp-NZu" id="DDV-l5-lWF"/>
                         <outlet property="DetailsButton" destination="hhX-9J-xL0" id="H44-CS-NKf"/>
                         <outlet property="HeaderContainer" destination="edg-Qa-Nsh" id="6Qa-BJ-vfN"/>
                         <outlet property="HeaderLabel" destination="Noe-A8-rhu" id="Gm0-q3-dlC"/>
                         <outlet property="HeaderShadow" destination="cZD-Il-p8d" id="48w-eH-Ps8"/>
                         <outlet property="LogoImageView" destination="Ec3-6a-74g" id="DQr-M6-kv8"/>
                         <outlet property="MenuButton" destination="9ce-5S-eCz" id="eCI-Np-WfY"/>
+                        <outlet property="MenuTable" destination="U74-SG-gOJ" id="sxX-aL-IA2"/>
                         <outlet property="StatusBar" destination="L6l-ZZ-76s" id="dqm-CQ-TB5"/>
+                        <outlet property="WebView" destination="UTY-CH-wlp" id="tq5-2q-7XL"/>
+                        <outlet property="WebViewContainer" destination="rOY-a2-G0i" id="RKd-bt-9Tf"/>
+                        <outlet property="WebViewControls" destination="6hs-Co-Upb" id="YeM-xx-bOv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
