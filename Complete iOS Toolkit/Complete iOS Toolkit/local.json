@@ -2,10 +2,10 @@
   "AppSettings": [
                   {
                     "AppName":"My App Name",
-                    "HeaderColor":"10",
+                    "HeaderColor":"1",
                     "HeaderLabel":"My App",
                     "TagLine":"NICK CULBERTSON\nDallas App Developers",
-                    "MenuItems":"10"
+                    "MenuItems":"9"
                   },
                   {
                     "CustomColorR":"0",
