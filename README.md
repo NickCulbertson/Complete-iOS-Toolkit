@@ -130,15 +130,15 @@ This project includes the implementation of some of the most popular iOS native 
 
 ###Color index for "HeaderColor"
 <pre><code>
-1 = Teal
+1 = Turquoise
 2 = Green
 3 = Blue
 4 = Purple
-5 = Purple
-6 = Purple
-7 = Purple
-8 = Purple
-9 = Purple
+5 = Navy
+6 = Yellow
+7 = Orange
+8 = Red
+9 = Gray
 10 = Custom Color //Set by "CustomColor" options
 </code></pre>
 
