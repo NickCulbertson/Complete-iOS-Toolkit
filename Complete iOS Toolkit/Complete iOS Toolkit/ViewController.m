@@ -550,7 +550,7 @@ if (!PreiOS8) {
             }else if([MenuItemString isEqualToString:@"alert"]){
                 [self ShowAlert];
             }else if([MenuItemString isEqualToString:@"iap"]){
-                [self ShowAlert];
+                //[self ShowAlert];
             }else if([MenuItemString isEqualToString:@"notification"]){
                 [[PushController sharedInstance] AllowNotificationsAlert];
             }else if([MenuItemString isEqualToString:@"rate"]){
@@ -558,7 +558,6 @@ if (!PreiOS8) {
             }else{
             HomeShow=false;
             WebView.alpha=0;
-            //[WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
             
             [WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:MenuItemString]]];
             HeaderLabel.text=HeaderLabelString;
@@ -581,38 +580,7 @@ if (!PreiOS8) {
         }
         
     }
-//    if(indexPath.row == 0){
-//        
-//
-//    }else if(indexPath.row == 1){
-//        MenuItemString = [SettingsArray[12] objectForKey:@"MenuURL2"];
-//        HeaderLabelString = [SettingsArray[9] objectForKey:@"MenuLabel2"];
-//
-//    }else if(indexPath.row == 2){
-//        MenuItemString = [SettingsArray[13] objectForKey:@"MenuURL3"];
-//        HeaderLabelString = [SettingsArray[10] objectForKey:@"MenuLabel3"];
-//        
-//    }else if(indexPath.row == 3){
-//        MenuItemString = [SettingsArray[14] objectForKey:@"MenuURL3"];
-//        HeaderLabelString = [SettingsArray[10] objectForKey:@"MenuLabel3"];
-//        
-//    }else if(indexPath.row == 4){
-//        MenuItemString = [SettingsArray[15] objectForKey:@"MenuURL3"];
-//        HeaderLabelString = [SettingsArray[10] objectForKey:@"MenuLabel3"];
-//       
-//    }else if(indexPath.row == 5){
-//        
-//    }else if(indexPath.row == 6){
-//       
-//    }else if(indexPath.row == 7){
-//        
-//    }else if(indexPath.row == 8){
-//       
-//    }else if(indexPath.row == 9){
-//        
-//    }else if(indexPath.row == 10){
-//        
-//    }
+
     
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
