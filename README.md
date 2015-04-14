@@ -61,7 +61,7 @@ In MenuURL enter one of the following options:
 
 "http://..." to open a webpage in a webview
 
-<code>{
+<code>"{
   "AppSettings": [
                   {
                     "AppName":"My App Name",
@@ -182,7 +182,7 @@ In MenuURL enter one of the following options:
                     "AlertURL":"iap"
                   },
                   ],
-}</code>
+}"</code>
 
 # In-App Purchases
 All you have to do is change ID in-app Purchase. You can do so by opening IAPHelper.m. Find:
