@@ -11,7 +11,7 @@ This project includes the implementation of some of the most popular iOS native 
                     "HeaderColor":"3", //Choose a number between "1-9" to select a color theme. If you enter "10" you can enter the custom values below
                     "HeaderLabel":"My App", //This is the title that will show in the header of the home screen
                     "TagLine":"NICK CULBERTSON\nDallas App Developers", //This is the label under the logo (type "\n" for a line break like "line one \n line two"
-                    "MenuItems":"9" //Enter the # of menu options you want. Note: The number cannot exceed the number of menu items listed below.
+                    "MenuItems":"8" //Enter the # of menu options you want. Note: The number cannot exceed the number of menu items listed bellow.
                   },
                   {
                     "CustomColorR":"0", //For custom colors enter values between 0-255. Higher values increase saturation of that color.
@@ -51,11 +51,6 @@ This project includes the implementation of some of the most popular iOS native 
                     "MenuTitle":"Youtube",
                     "MenuLabel":"My Youtube",
                     "MenuURL":"http://www.youtube.com/"
-                  },
-                  {
-                    "MenuTitle":"Weather",
-                    "MenuLabel":"Dallas Weather",
-                    "MenuURL":"http://m.weather.com/weather/tenday/l/Dallas+TX+USTX0327:1:US"
                   },
                   {
                     "MenuTitle":"Rate",
