@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "iRate.h"
 
 @interface AppDelegate ()
 
@@ -14,10 +15,42 @@
 
 @implementation AppDelegate
 
++ (void)initialize{
+    //configure iRate
+    [iRate sharedInstance].daysUntilPrompt = 10;
+    [iRate sharedInstance].usesUntilPrompt = 15;
+    [iRate sharedInstance].promptAtLaunch = YES;
+    NSLog(@"pizza sauce");
+
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(UILocalNotification *notification in notificationArray){
+        
+        // Delete all notifications
+        [[UIApplication sharedApplication] cancelLocalNotification:notification] ;
+
+        // Delete a specific notification
+//        if ([notification.alertBody isEqualToString:@"AppName has just been updated. See what you have been missing."]) {
+//            // delete this notification
+//            [[UIApplication sharedApplication] cancelLocalNotification:notification] ;
+//        }
+    }
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    // Store the deviceToken.
+    NSLog(@"%@", newDeviceToken);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Failed To Register For Remote Notifications With Error: %@", error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -25,16 +58,46 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // Create new UILocalNotification object.
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    // Set the date and time of the notification.
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * 14];
+    
+    // Set the message body of the notification.
+    localNotification.alertBody = @"AppName has just been updated. See what you have been missing.";
+
+    
+    // Set the time zone of the notification.
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    
+    // Perform the notification.
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(UILocalNotification *notification in notificationArray){
+        if ([notification.alertBody isEqualToString:@"AppName has just been updated. See what you have been missing."]) {
+            // delete this notification
+            [[UIApplication sharedApplication] cancelLocalNotification:notification] ;
+        }
+    }
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

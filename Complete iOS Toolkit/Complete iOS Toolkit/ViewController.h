@@ -8,15 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UITableViewDelegate, UIWebViewDelegate>{
+@import GoogleMobileAds;
+
+@interface ViewController : UIViewController<GADBannerViewDelegate,UITableViewDelegate, UIWebViewDelegate>{
     
+    GADBannerView *bannerView_;
+    
+    IBOutlet UILabel *AppQuote;
     IBOutlet UIImageView *StatusBar;
     IBOutlet UIImageView *HeaderShadow;
     IBOutlet UIScrollView *HeaderContainer;
     IBOutlet UILabel *HeaderLabel;
     IBOutlet UITableView *MenuTable;
     IBOutlet UIScrollView *WebViewContainer;
-    
+    IBOutlet UIImageView *WebViewImageView;
     IBOutlet UIButton *MenuButton;
     IBOutlet UIButton *DetailsButton;
     
@@ -31,8 +36,20 @@
     NSArray *SettingsArray;
     NSArray *MenuArray;
     NSMutableArray *ContentArray;
-    
+    NSString *AppNameString;
+    NSString *AlertMessageString;
+
+
+    int AdState;
     int MenuItems;
+    BOOL PreiOS8;
+    BOOL HomeShow;
+    float r;
+    float g;
+    float b;
+    float rShadow;
+    float gShadow;
+    float bShadow;
 }
 - (IBAction)MenuAction;
 - (IBAction)DetailsAction;
