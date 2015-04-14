@@ -1,7 +1,7 @@
 # Complete-iOS-Toolkit
 This project includes the implementation of some of the most popular iOS native features: iap, admob, push notifications, etc.  
 
-Edit the local.json file to customize the app. Here is a key:
+# Edit the local.json file to customize the app. Here is a key:
 
 Enter your app name
 "AppName":"Your App Name Here",
