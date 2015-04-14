@@ -1,27 +1,9 @@
 # Complete-iOS-Toolkit
 This project includes the implementation of some of the most popular iOS native features: iap, admob, push notifications, etc.  
 
-# Edit the local.json file to customize the app. Here is a key:
+# Edit local.json to customize the app.
 
-Color index for "HeaderColor"
-1 = Teal
-2 = Green
-3 = Blue
-4 = Purple
-
-In MenuURL enter one of the following options:
-<pre><code>
-"home" to return to the landing page
-
-"rate" for a rate prompt
-
-"iap" to initiate an in-app purchase
-
-"notification" to enable or disable notifications
-
-"http://..." to open a webpage in a webview
-</code></pre>
-
+######"local.json" Key
 <pre><code>{
   "AppSettings": [
                   {
@@ -145,11 +127,37 @@ In MenuURL enter one of the following options:
                   ],
 }</code></pre>
 
+
+###Color index for "HeaderColor"
+<pre><code>
+1 = Teal
+2 = Green
+3 = Blue
+4 = Purple
+</code></pre>
+
+
+###MenuURL enter one of the following options:
+<pre><code>
+"home" to return to the landing page
+
+"rate" for a rate prompt
+
+"iap" to initiate an in-app purchase
+
+"notification" to enable or disable notifications
+
+"http://..." to open a webpage in a webview
+</code></pre>
+
+
 # In-App Purchases
 All you have to do is change ID in-app Purchase. You can do so by opening IAPHelper.m. Find:
 
 `#define kIAPProductIdentifier1 @"com.MadCalfApps.CompleteiOSToolkit.inapp.IAP1b"`
 
 Example iTunes Connect - Manage In-App Purchases
+
+# Push Notifications
 
 
