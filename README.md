@@ -3,54 +3,14 @@ This project includes the implementation of some of the most popular iOS native 
 
 # Edit the local.json file to customize the app. Here is a key:
 
-Enter your app name
-
-"AppName":"Your App Name Here",
-
-
-Choose a number between "1-9" to select a color theme. If you enter "10" you can enter the custom values below
-
+Color index for "HeaderColor"
 1 = Teal
 2 = Green
 3 = Blue
 4 = Purple
 
-"HeaderColor":"1"
-
-
-This is the title that will show in the header of the home screen
-
-"HeaderLabel":"My App",
-
-
-This is the label under the logo (type "\n" for a line break like "line one \n line two"
-
-"TagLine":"NICK CULBERTSON\nDallas App Developers",
-
-
-Enter the # of menu options you want. Note: The number cannot exceed the number of menu items listed below.
-
-"MenuItems":"9"
-
-
-"CustomColorR":"0",
-"CustomColorG":"180",
-"CustomColorB":"40",
-"CustomColorRShadow":"15",
-"CustomColorGShadow":"140",
-"CustomColorBShadow":"20"
-
-
-This is where you enter text for the settings alertview.
-
-"AlertTitle":"My Settings",
-
-"AlertMessage":"Thanks for checking out the app. Enjoy!",
-
-These are the menu items in the menu bar.
-
 In MenuURL enter one of the following options:
-
+<pre><code>
 "home" to return to the landing page
 
 "rate" for a rate prompt
@@ -60,18 +20,19 @@ In MenuURL enter one of the following options:
 "notification" to enable or disable notifications
 
 "http://..." to open a webpage in a webview
+</code></pre>
 
-<code>"{
+<pre><code>{
   "AppSettings": [
                   {
-                    "AppName":"My App Name",
-                    "HeaderColor":"3",
-                    "HeaderLabel":"My App",
-                    "TagLine":"NICK CULBERTSON\nDallas App Developers",
-                    "MenuItems":"9"
+                    "AppName":"My App Name", //Enter your app name
+                    "HeaderColor":"3", //Choose a number between "1-9" to select a color theme. If you enter "10" you can enter the custom values below
+                    "HeaderLabel":"My App", //This is the title that will show in the header of the home screen
+                    "TagLine":"NICK CULBERTSON\nDallas App Developers", //This is the label under the logo (type "\n" for a line break like "line one \n line two"
+                    "MenuItems":"9" //Enter the # of menu options you want. Note: The number cannot exceed the number of menu items listed below.
                   },
                   {
-                    "CustomColorR":"0",
+                    "CustomColorR":"0", //For custom colors enter values between 0-255. Higher values increase saturation of that color.
                     "CustomColorG":"180",
                     "CustomColorB":"40",
                     "CustomColorRShadow":"15",
@@ -83,7 +44,7 @@ In MenuURL enter one of the following options:
                     "AlertMessage":"Thanks for checking out the app. Enjoy!",
                   },
                 ],
-    "MenuItems": [
+    "MenuItems": [ //These are the menu items in the menu bar.
                   {
                     "MenuTitle":"Home",
                     "MenuLabel":"My App",
@@ -137,7 +98,7 @@ In MenuURL enter one of the following options:
                 ],
     "AlertItems": [
                   {
-                    "AlertTitle":"Twitter",
+                    "AlertTitle":"Twitter", //This is where you enter text for the settings alertview.
                     "AlertButton":"My Twitter",
                     "AlertURL":"http://www.twitter.com/madcalfapps"
                   },
@@ -182,7 +143,7 @@ In MenuURL enter one of the following options:
                     "AlertURL":"iap"
                   },
                   ],
-}"</code>
+}</code></pre>
 
 # In-App Purchases
 All you have to do is change ID in-app Purchase. You can do so by opening IAPHelper.m. Find:
