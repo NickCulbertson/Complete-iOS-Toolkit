@@ -1,7 +1,7 @@
 # Complete-iOS-Toolkit
 This project includes the implementation of some of the most popular iOS native features: iap, admob, push notifications, etc.  
 
-# Edit local.json to customize the app.
+## Edit "local.json" to customize the app.
 
 ######"local.json" Key
 <pre><code>{
@@ -21,21 +21,21 @@ This project includes the implementation of some of the most popular iOS native 
                     "CustomColorGShadow":"140",
                     "CustomColorBShadow":"20"
                   },
-                  {
+                  { //This is where you enter text for the settings alertview.
                     "AlertTitle":"My Settings",
                     "AlertMessage":"Thanks for checking out the app. Enjoy!",
                   },
                 ],
     "MenuItems": [ //These are the menu items in the menu bar.
                   {
-                    "MenuTitle":"Home",
-                    "MenuLabel":"My App",
-                    "MenuURL":"home"
+                    "MenuTitle":"Home", //Title on menu 
+                    "MenuLabel":"My App", // Title of the header after selection is made
+                    "MenuURL":"home" //"home" to return to the landing page
                   },
                   {
                     "MenuTitle":"Twitter",
                     "MenuLabel":"My Twitter",
-                    "MenuURL":"http://www.twitter.com/madcalfapps"
+                    "MenuURL":"http://www.twitter.com/" //"http://..." to open a webpage in a webview
                   },
                   {
                     "MenuTitle":"Google",
@@ -45,12 +45,12 @@ This project includes the implementation of some of the most popular iOS native 
                   {
                     "MenuTitle":"Facebook",
                     "MenuLabel":"My Facebook",
-                    "MenuURL":"https://www.facebook.com/pages/Mad-Calf-Apps/179369155500535?fref=nf"
+                    "MenuURL":"https://www.facebook.com/"
                   },
                   {
                     "MenuTitle":"Youtube",
                     "MenuLabel":"My Youtube",
-                    "MenuURL":"http://www.youtube.com/madcalfapps"
+                    "MenuURL":"http://www.youtube.com/"
                   },
                   {
                     "MenuTitle":"Weather",
@@ -60,27 +60,27 @@ This project includes the implementation of some of the most popular iOS native 
                   {
                     "MenuTitle":"Rate",
                     "MenuLabel":"Rate",
-                    "MenuURL":"rate"
+                    "MenuURL":"rate" //"rate" takes the user to your app in the store
                   },
                   {
                     "MenuTitle":"Alert",
                     "MenuLabel":"My Alert",
-                    "MenuURL":"alert"
+                    "MenuURL":"alert" 
                   },
                   {
                     "MenuTitle":"Notifications",
                     "MenuLabel":"My Notification",
-                    "MenuURL":"notification"
+                    "MenuURL":"notification" //"notification" to enable or disable notifications
                   },
                   {
                     "MenuTitle":"In App Purchase",
                     "MenuLabel":"My IAP",
-                    "MenuURL":"iap"
+                    "MenuURL":"iap" //"iap" to initiate an in-app purchase
                   },
                 ],
     "AlertItems": [
                   {
-                    "AlertTitle":"Twitter", //This is where you enter text for the settings alertview.
+                    "AlertTitle":"Twitter",
                     "AlertButton":"My Twitter",
                     "AlertURL":"http://www.twitter.com/madcalfapps"
                   },
@@ -97,7 +97,7 @@ This project includes the implementation of some of the most popular iOS native 
                   {
                     "AlertTitle":"Youtube",
                     "AlertButton":"My Youtube",
-                    "AlertURL":"http://www.youtube.com/madcalfapps"
+                    "AlertURL":"http://www.youtube.com/"
                   },
                   {
                     "AlertTitle":"Weather",
@@ -134,19 +134,21 @@ This project includes the implementation of some of the most popular iOS native 
 2 = Green
 3 = Blue
 4 = Purple
+5 = Purple
+6 = Purple
+7 = Purple
+8 = Purple
+9 = Purple
+10 = Custom Color //Set by "CustomColor" options
 </code></pre>
 
 
 ###MenuURL enter one of the following options:
 <pre><code>
 "home" to return to the landing page
-
 "rate" for a rate prompt
-
 "iap" to initiate an in-app purchase
-
 "notification" to enable or disable notifications
-
 "http://..." to open a webpage in a webview
 </code></pre>
 
