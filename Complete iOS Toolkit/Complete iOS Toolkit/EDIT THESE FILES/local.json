@@ -47,11 +47,6 @@
                     "MenuURL":"http://www.youtube.com/madcalfapps"
                   },
                   {
-                    "MenuTitle":"Weather",
-                    "MenuLabel":"Dallas Weather",
-                    "MenuURL":"http://m.weather.com/weather/tenday/l/Dallas+TX+USTX0327:1:US"
-                  },
-                  {
                     "MenuTitle":"Rate",
                     "MenuLabel":"Rate",
                     "MenuURL":"rate"

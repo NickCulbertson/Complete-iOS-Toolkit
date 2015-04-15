@@ -454,6 +454,61 @@ if (!PreiOS8) {
 }
 }
 
+-(void)ShowIAPAlert{
+    if (!PreiOS8) {
+        // iOS 8 logic
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:AppNameString
+                                      message:@"Remove Ads"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"Purchase 'Remove Ads'"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [[IAPHelper sharedInstance] purchaseIAP1];
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        UIAlertAction* ok2 = [UIAlertAction
+                              actionWithTitle:@"Restore"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [[IAPHelper sharedInstance] restore];
+                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                  
+                              }];
+        UIAlertAction* cancel2 = [UIAlertAction
+                                  actionWithTitle:@"Thanks! Maybe Later"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
+        
+        [alert addAction:ok];
+        [alert addAction:ok2];
+        [alert addAction:cancel2];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        // iOS 7 logic
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:AppNameString
+                                                        message:@"Remove Ads"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Thanks! Maybe Later"
+                                              otherButtonTitles:@"Purchase 'Remove Ads'", @"Restore",nil];
+        
+        [alert show];
+    }
+}
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     //iOS 7 Only
     NSURL *url2 = [NSURL URLWithString:@"http://itunes.apple.com/app/id961640913?at=10lun6"];//?mt=8
@@ -572,7 +627,7 @@ if (!PreiOS8) {
             }else if([MenuItemString isEqualToString:@"alert"]){
                 [self ShowAlert];
             }else if([MenuItemString isEqualToString:@"iap"]){
-                //[self ShowAlert];
+                [self ShowIAPAlert];
             }else if([MenuItemString isEqualToString:@"notification"]){
                 [[PushController sharedInstance] AllowNotificationsAlert];
             }else if([MenuItemString isEqualToString:@"rate"]){
@@ -602,9 +657,6 @@ if (!PreiOS8) {
         }
         
     }
-
-    
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
@@ -647,24 +699,21 @@ if (!PreiOS8) {
         [UIView commitAnimations];
         MenuShow=false;
     }
-    
 }
 
 - (IBAction)DetailsAction {
-    [[IAPHelper sharedInstance] purchaseIAP1];
     
     //[[PushController sharedInstance] AllowNotificationsAlert];
 
     //[[iRate sharedInstance] promptForRating];
     
-    //[self ShowAlert];
-    
-    
-    
+    [self ShowAlert];
+   
 }
 
 - (void) PurchasedIAP1{
-
+    //Enter methods for IAP1 purchase
+    
     AdsEnabled=false;
     [bannerView_ removeFromSuperview];
     
@@ -675,14 +724,15 @@ if (!PreiOS8) {
     }
     
 }
-- (void) PurchasedIAP2{}
-- (void) PurchasedIAP3{}
-- (void) PurchasedIAP4{}
-- (void) PurchasedIAP5{}
-- (void) PurchasedIAP6{}
-- (void) PurchasedIAP7{}
-- (void) PurchasedIAP8{}
-- (void) PurchasedIAP9{}
-- (void) PurchasedIAP10{}
+//Add These for additional IAPs
+//- (void) PurchasedIAP2{}
+//- (void) PurchasedIAP3{}
+//- (void) PurchasedIAP4{}
+//- (void) PurchasedIAP5{}
+//- (void) PurchasedIAP6{}
+//- (void) PurchasedIAP7{}
+//- (void) PurchasedIAP8{}
+//- (void) PurchasedIAP9{}
+//- (void) PurchasedIAP10{}
 
 @end

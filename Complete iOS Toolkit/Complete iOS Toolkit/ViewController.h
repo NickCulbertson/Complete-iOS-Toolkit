@@ -55,15 +55,15 @@
 - (IBAction) MenuAction;
 - (IBAction) DetailsAction;
 - (void) PurchasedIAP1;
-- (void) PurchasedIAP2;
-- (void) PurchasedIAP3;
-- (void) PurchasedIAP4;
-- (void) PurchasedIAP5;
-- (void) PurchasedIAP6;
-- (void) PurchasedIAP7;
-- (void) PurchasedIAP8;
-- (void) PurchasedIAP9;
-- (void) PurchasedIAP10;
+//- (void) PurchasedIAP2;
+//- (void) PurchasedIAP3;
+//- (void) PurchasedIAP4;
+//- (void) PurchasedIAP5;
+//- (void) PurchasedIAP6;
+//- (void) PurchasedIAP7;
+//- (void) PurchasedIAP8;
+//- (void) PurchasedIAP9;
+//- (void) PurchasedIAP10;
 
 @end
 

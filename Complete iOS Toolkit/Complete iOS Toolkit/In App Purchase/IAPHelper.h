@@ -37,6 +37,8 @@
 -(BOOL)getIAP10;
 -(void)setIAP10:(BOOL)IAP10;
 
+-(void)restore;
+
 -(void)purchaseIAP1;
 -(void)purchaseIAP2;
 -(void)purchaseIAP3;

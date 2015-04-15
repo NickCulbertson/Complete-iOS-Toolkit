@@ -33,10 +33,7 @@ static IAPHelper* _sharedIAPHelper;
     if (self) {
         _sharedIAPHelper = self;
     }
-    return self;
-}
-
--(void)viewDidLoad{
+    
     NSArray *versionArray = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
     NSLog(@"%d",[[versionArray objectAtIndex:0]intValue]);
     if ([[versionArray objectAtIndex:0] intValue] >= 8) {
@@ -59,6 +56,8 @@ static IAPHelper* _sharedIAPHelper;
     connectingView.image = [UIImage imageNamed:@"connecting"];
     [[UIApplication sharedApplication].delegate.window.rootViewController.view addSubview:connectingView];
     connectingView.hidden = YES;
+    
+    return self;
 }
 
 //Set & Get In App Purchase State
@@ -155,6 +154,7 @@ static IAPHelper* _sharedIAPHelper;
 
 #pragma mark - inApp PURCHASE
 -(void)purchaseIAP1{
+       
     if([SKPaymentQueue canMakePayments]){
         CountBuy=1;
         NSLog(@"User can make payments");
