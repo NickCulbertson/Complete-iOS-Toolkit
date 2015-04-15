@@ -1,9 +1,9 @@
 # Complete-iOS-Toolkit
 This project includes the implementation of some of the most popular iOS native features including: 
 
-######• In-App Purchases
-######• Ad Banners (Admob) 
 ######• Push Notifications
+######• Ad Banners (Admob) 
+######• In-App Purchases
 ######• Rate This App
 ######• JSON Data Storage
 
