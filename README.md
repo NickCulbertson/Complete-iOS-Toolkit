@@ -124,8 +124,7 @@ This project includes the implementation of some of the most popular iOS native 
 
 
 ###Color index for "HeaderColor"
-<pre><code>
-1 = Turquoise
+<pre><code>1 = Turquoise
 2 = Green
 3 = Blue
 4 = Purple
@@ -139,12 +138,11 @@ This project includes the implementation of some of the most popular iOS native 
 
 
 ###MenuURL enter one of the following options:
-<pre><code>
+<pre><code>"http://..." to open a webpage in a webview
 "home" to return to the landing page
 "rate" for a rate prompt
 "iap" to initiate an in-app purchase
 "notification" to enable or disable notifications
-"http://..." to open a webpage in a webview
 </code></pre>
 
 
