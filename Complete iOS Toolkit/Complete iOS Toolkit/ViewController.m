@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "iRate.h"
 #import "PushController.h"
+#import "IAPHelper.h"
 
 @interface ViewController ()
 
@@ -40,29 +41,15 @@
     }
     
     
-  //if Ads
-    CGPoint origin = CGPointMake(0.0,
-                                 [WebViewContainer bounds].size.height -
-                                 [WebViewControls bounds].size.height -
-                                 CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height);
+    AdsEnabled=true;
     
-    // Create a view of the standard size at the top of the screen.
-    // Available AdSize constants are explained in GADAdSize.h.
-    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait origin:origin];
+    if ([[IAPHelper sharedInstance]getIAP1]||!AdsEnabled) {
+        //No Ads
+    }else{
+        //Ads
+        [self CreateAd];
     
-    // Specify the ad unit ID.
-    bannerView_.adUnitID = @"ca-app-pub-0325717490228488/1458343033";
-    
-    // Let the runtime know which UIViewController to restore after taking
-    // the user wherever the ad goes and add it to the view hierarchy.
-    bannerView_.rootViewController = self;
-    [WebViewContainer addSubview:bannerView_];
-    [bannerView_ setDelegate:self];
-    
-    
-    // Initiate a generic request to load it with an ad.
-    [bannerView_ loadRequest:[GADRequest request]];
-    
+    }
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"local" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:filePath];
@@ -95,7 +82,7 @@
         if(AdState!=2){
             NSLog(@"Landscape Ad");
             AdState=2;
-        [self ShowAdLandscape];
+        [self ShowLandscape];
         }
         
     }else if (UIDeviceOrientationIsPortrait(deviceOrientation)){
@@ -104,7 +91,7 @@
         if(AdState!=1){
             NSLog(@"Portrait Ad");
             AdState=1;
-        [self ShowAdPortrait];
+        [self ShowPortrait];
         }
     }else{
         
@@ -113,31 +100,66 @@
     
 }
 
--(void)ShowAdPortrait{
+-(void)ShowPortrait{
     
         NSLog(@"Portrait Ad YES");
     
+    if(AdsEnabled){
     WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height);
     
         bannerView_.frame = CGRectMake(0,[WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).width,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height);
+    }else{
+        WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height);
         
+    }
     
     
 }
--(void)ShowAdLandscape{
+-(void)ShowLandscape{
   
      NSLog(@"Landscape Ad YES");
     
+    if(AdsEnabled){
     WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height);
     
     
         bannerView_.frame = CGRectMake(0,[WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).width,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height);
+    }else{
+        WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height);
+        
+        
+    }
     
 }
+
+-(void)CreateAd{
+    CGPoint origin = CGPointMake(0.0,
+                                 [WebViewContainer bounds].size.height -
+                                 [WebViewControls bounds].size.height -
+                                 CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height);
+    
+    // Create a view of the standard size at the top of the screen.
+    // Available AdSize constants are explained in GADAdSize.h.
+    bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait origin:origin];
+    
+    // Specify the ad unit ID.
+    bannerView_.adUnitID = @"ca-app-pub-0325717490228488/1458343033";
+    
+    // Let the runtime know which UIViewController to restore after taking
+    // the user wherever the ad goes and add it to the view hierarchy.
+    bannerView_.rootViewController = self;
+    [WebViewContainer addSubview:bannerView_];
+    [bannerView_ setDelegate:self];
+    
+    
+    // Initiate a generic request to load it with an ad.
+    [bannerView_ loadRequest:[GADRequest request]];
+}
+
 
 - (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification{
     
@@ -247,20 +269,20 @@
                 bShadow=18;
             }else if([HeaderColorString isEqualToString:@"7"]){
                 //Light Blue
+                r=230;
+                g=126;
+                b=34;
+                rShadow=211;
+                gShadow=84;
+                bShadow=0;
+            }else if([HeaderColorString isEqualToString:@"8"]){
+                //Light Blue
                 r=231;
                 g=76;
                 b=60;
                 rShadow=192;
                 gShadow=57;
                 bShadow=43;
-            }else if([HeaderColorString isEqualToString:@"8"]){
-                //Light Blue
-                r=236;
-                g=240;
-                b=241;
-                rShadow=189;
-                gShadow=195;
-                bShadow=199;
             }else if([HeaderColorString isEqualToString:@"9"]){
                 //Light Blue
                 r=149;
@@ -629,10 +651,38 @@ if (!PreiOS8) {
 }
 
 - (IBAction)DetailsAction {
+    [[IAPHelper sharedInstance] purchaseIAP1];
+    
     //[[PushController sharedInstance] AllowNotificationsAlert];
 
     //[[iRate sharedInstance] promptForRating];
     
-    [self ShowAlert];
+    //[self ShowAlert];
+    
+    
+    
 }
+
+- (void) PurchasedIAP1{
+
+    AdsEnabled=false;
+    [bannerView_ removeFromSuperview];
+    
+    if(AdState==1){
+        [self ShowPortrait];
+    }else{
+        [self ShowLandscape];
+    }
+    
+}
+- (void) PurchasedIAP2{}
+- (void) PurchasedIAP3{}
+- (void) PurchasedIAP4{}
+- (void) PurchasedIAP5{}
+- (void) PurchasedIAP6{}
+- (void) PurchasedIAP7{}
+- (void) PurchasedIAP8{}
+- (void) PurchasedIAP9{}
+- (void) PurchasedIAP10{}
+
 @end
