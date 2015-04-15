@@ -150,13 +150,26 @@ This project includes the implementation of some of the most popular iOS native 
 "notification" to enable or disable notifications</code></pre>
 
 
-# In-App Purchases
-All you have to do is change ID in-app Purchase. You can do so by opening IAPHelper.m. Find:
-
-`#define kIAPProductIdentifier1 @"com.MadCalfApps.CompleteiOSToolkit.inapp.IAP1b"`
-
-Example iTunes Connect - Manage In-App Purchases
-
 # Push Notifications
 
+1. Create a developer and distribution certificate and provisioning profile enabled with push notifications using your app bundle name.
+2. Set the text and schedule for your push notification in the local.json file.
+
+# Ad Banners (Admob) 
+
+1. Create a Google Admob Account (if you have not already).
+2. Create a new Ad ID for your app.
+3. Copy and Paste your Ad ID into the ######local.json file.
+
+# In-App Purchases
+
+1. Setup an In-App Purchase on iTunesConnect using this url format `@"com.YourDeveloperName.YourAppName.inapp.IAP1"`
+2. Select the IAP to be non-consumable (one time purchase).  
+3. Change ID In-App Purchase in IAPHelper.m. Find:
+`#define kIAPProductIdentifier1 @"com.YourDeveloperName.YourAppName.inapp.IAP1"`
+
+# Rate This App
+
+In the app delegate you can change the number of days and uses until the rate prompt will show.
+For full documentation on this refer to Nick Lockwood's iRate. https://github.com/nicklockwood/iRate
 
