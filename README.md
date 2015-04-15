@@ -1,5 +1,15 @@
 # Complete-iOS-Toolkit
-This project includes the implementation of some of the most popular iOS native features: iap, admob, push notifications, etc.  
+This project includes the implementation of some of the most popular iOS native features including: 
+
+• In-App Purchases
+
+• Ad Banners (Admob) 
+
+• Push Notifications
+
+• Rate This App
+
+• JSON Data Storage
 
 ## Edit "local.json" to customize the app.
 
