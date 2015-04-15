@@ -139,8 +139,7 @@ This project includes the implementation of some of the most popular iOS native 
 7 = Orange
 8 = Red
 9 = Gray
-10 = Custom Color //Set by "CustomColor" options
-</code></pre>
+10 = Custom Color //Set by "CustomColor" options</code></pre>
 
 
 ###MenuURL enter one of the following options:
@@ -148,8 +147,7 @@ This project includes the implementation of some of the most popular iOS native 
 "home" to return to the landing page
 "rate" for a rate prompt
 "iap" to initiate an in-app purchase
-"notification" to enable or disable notifications
-</code></pre>
+"notification" to enable or disable notifications</code></pre>
 
 
 # In-App Purchases
