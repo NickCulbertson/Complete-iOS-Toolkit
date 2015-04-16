@@ -28,9 +28,9 @@
 		5A88D11A1ADE0A1D00A5E51E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A88D1171ADE0A1D00A5E51E /* background.png */; };
 		5A88D11B1ADE0A1D00A5E51E /* local.json in Resources */ = {isa = PBXBuildFile; fileRef = 5A88D1181ADE0A1D00A5E51E /* local.json */; };
 		5A88D11C1ADE0A1D00A5E51E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A88D1191ADE0A1D00A5E51E /* logo.png */; };
-		5A88D11D1ADE11EF00A5E51E /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8E3B341ADCA69800D80401 /* GoogleMobileAds.framework */; };
-		5A88D11E1ADE11FD00A5E51E /* libAdapterIAd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8E3B351ADCA69800D80401 /* libAdapterIAd.a */; };
 		5A88D1201ADF2BB300A5E51E /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A88D11F1ADF2BB300A5E51E /* Default-568h.png */; };
+		5A88D1211ADF586B00A5E51E /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8E3B341ADCA69800D80401 /* GoogleMobileAds.framework */; };
+		5A88D1221ADF587200A5E51E /* libAdapterIAd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8E3B351ADCA69800D80401 /* libAdapterIAd.a */; };
 		5A8E3B321ADCA67300D80401 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A8E3B2F1ADCA67300D80401 /* iRate.bundle */; };
 		5A8E3B331ADCA67300D80401 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8E3B311ADCA67300D80401 /* iRate.m */; };
 		5A8E3B391ADCA69800D80401 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A8E3B361ADCA69800D80401 /* README.txt */; };
@@ -93,8 +93,8 @@
 		5A8E3B2F1ADCA67300D80401 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
 		5A8E3B301ADCA67300D80401 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
 		5A8E3B311ADCA67300D80401 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
-		5A8E3B341ADCA69800D80401 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Complete iOS Toolkit/Admob/GoogleMobileAds.framework"; sourceTree = SOURCE_ROOT; };
-		5A8E3B351ADCA69800D80401 /* libAdapterIAd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdapterIAd.a; path = "Complete iOS Toolkit/Admob/libAdapterIAd.a"; sourceTree = SOURCE_ROOT; };
+		5A8E3B341ADCA69800D80401 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		5A8E3B351ADCA69800D80401 /* libAdapterIAd.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAdapterIAd.a; sourceTree = "<group>"; };
 		5A8E3B361ADCA69800D80401 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		5AD9228F1ADAD7C00004D0C7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		5AD922911ADAD7CD0004D0C7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -125,11 +125,11 @@
 				5AD9229E1ADAD8080004D0C7 /* EventKitUI.framework in Frameworks */,
 				5AD9229A1ADAD7FD0004D0C7 /* CoreTelephony.framework in Frameworks */,
 				5AD922981ADAD7EF0004D0C7 /* CoreMedia.framework in Frameworks */,
-				5A88D11E1ADE11FD00A5E51E /* libAdapterIAd.a in Frameworks */,
+				5A88D1221ADF587200A5E51E /* libAdapterIAd.a in Frameworks */,
 				5AD922961ADAD7E50004D0C7 /* CoreGraphics.framework in Frameworks */,
 				5AD922941ADAD7D50004D0C7 /* AVFoundation.framework in Frameworks */,
 				5AD922921ADAD7CD0004D0C7 /* AudioToolbox.framework in Frameworks */,
-				5A88D11D1ADE11EF00A5E51E /* GoogleMobileAds.framework in Frameworks */,
+				5A88D1211ADF586B00A5E51E /* GoogleMobileAds.framework in Frameworks */,
 				5AD922901ADAD7C00004D0C7 /* AdSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
