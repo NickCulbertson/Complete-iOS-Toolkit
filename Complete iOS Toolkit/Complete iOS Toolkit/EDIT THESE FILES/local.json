@@ -27,7 +27,7 @@
                     "DaysUntilPush":"10",
                   },
                   {
-                    "IAPMessage":"AppName has just been updated. See what you have been missing.",
+                    "IAPMessage":"Enter Prompt",
                     "DaysUntilPush":"10",
                   },
                 ],

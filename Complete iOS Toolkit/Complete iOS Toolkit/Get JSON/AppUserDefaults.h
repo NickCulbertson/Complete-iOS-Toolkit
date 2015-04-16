@@ -6,17 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ViewController.h"
 
-@interface AppUserDefaults : NSObject
-+ (AppUserDefaults*) sharedAppUserDefaults;
+@class ViewController;
 
-//No Ads?
--(BOOL)getNoAds;
--(void)setNoAds:(BOOL)noAds;
--(BOOL)getDrums;
--(void)setDrums:(BOOL)Drums;
--(BOOL)getAlliap;
--(void)setAlliap:(BOOL)Alliap;
+@interface AppUserDefaults : NSObject{
+}
++ (AppUserDefaults*) sharedInstance;
+//-(void)GetRemoteJSON;
+
 
 
 @end

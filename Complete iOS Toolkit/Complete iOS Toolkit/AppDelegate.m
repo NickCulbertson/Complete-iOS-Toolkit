@@ -21,8 +21,6 @@
     [iRate sharedInstance].daysUntilPrompt = 10;
     [iRate sharedInstance].usesUntilPrompt = 15;
     [iRate sharedInstance].promptAtLaunch = YES;
-    NSLog(@"pizza sauce");
-
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -51,6 +49,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    
     [[PushController sharedInstance] RemovePush];
 
     

@@ -25,43 +25,6 @@ PushController* _sharedAppPush;
     return self;
 }
 
--(void)CreatePush{
-
-    NSString *PushMessage;
-    int Days;
-
-    
-    if([[NSUserDefaults standardUserDefaults] valueForKey:@"PushMessage"]==NULL){
-        PushMessage = @"The app has just been updated. Come check out what all is new.";
-        
-    }else{
-        PushMessage = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushMessage"];
-    }
-    
-    if([[NSUserDefaults standardUserDefaults] valueForKey:@"DaysUntilPush"]==NULL){
-        Days = 10;
-        
-    }else{
-        Days = [[[NSUserDefaults standardUserDefaults] objectForKey:@"DaysUntilPush"] intValue];
-    }
-    
-    // Create new UILocalNotification object.
-    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-    
-    // Set the date and time of the notification.
-    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * Days];
-    
-    // Set the message body of the notification.
-    localNotification.alertBody = PushMessage;
-    
-    
-    // Set the time zone of the notification.
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    
-    // Perform the notification.
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-}
-
 -(void)AllowNotificationsAlert{
     
     NSArray *versionArray = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
@@ -132,8 +95,46 @@ PushController* _sharedAppPush;
     }
 }
 
-- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification{
+-(void)CreatePush{
+
+    NSString *PushMessage;
+    int Days;
+
     
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"PushMessage"]==NULL){
+        PushMessage = @"The app has just been updated. Come check out what all is new.";
+        
+    }else{
+        PushMessage = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushMessage"];
+    }
+    
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"DaysUntilPush"]==NULL){
+        Days = 10;
+        
+    }else{
+        Days = [[[NSUserDefaults standardUserDefaults] objectForKey:@"DaysUntilPush"] intValue];
+    }
+    
+    // Create new UILocalNotification object.
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    // Set the date and time of the notification.
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * Days];
+    
+    // Set the message body of the notification.
+    localNotification.alertBody = PushMessage;
+    
+    
+    // Set the time zone of the notification.
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    
+    // Perform the notification.
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification{
+   //Remove Badges
     
 }
 

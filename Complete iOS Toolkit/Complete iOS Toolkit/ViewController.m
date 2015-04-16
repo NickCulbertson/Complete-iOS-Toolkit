@@ -10,12 +10,14 @@
 #import "iRate.h"
 #import "PushController.h"
 #import "IAPHelper.h"
+#import "AppUserDefaults.h"
 
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad {
 
@@ -60,6 +62,60 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+#pragma mark UI Button methods
+
+- (IBAction)MenuAction {
+    if (!MenuShow) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:.5];
+        [UIView setAnimationDelay:0];
+        [UIView setAnimationRepeatCount:0];
+        WebViewImageView.alpha=.7;
+
+        WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width,WebViewContainer.center.y);
+        
+        MenuTable.center=CGPointMake([MenuTable bounds].size.width/2,MenuTable.center.y);
+        DarkImageView.alpha=.5;
+        [UIView commitAnimations];
+        MenuShow=true;
+    }else{
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:.5];
+        [UIView setAnimationDelay:0];
+        [UIView setAnimationRepeatCount:0];
+        WebViewImageView.alpha=0;
+        if(!HomeShow){
+
+            WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
+        }else{
+            
+            WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width+[[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
+        }
+        MenuTable.center=CGPointMake(-[MenuTable bounds].size.width/2,MenuTable.center.y);
+        DarkImageView.alpha=0;
+        [UIView commitAnimations];
+        MenuShow=false;
+    }
+}
+
+- (IBAction)DetailsAction {
+    
+    [self ShowAlert];
+    
+}
+
+#pragma mark Device Orientation methods
+
+
+-(BOOL)shouldAutorotate{
+    if(!PreiOS8){
+        return YES;
+    }else{
+       return NO;
+    }
+}
+
+
 - (void)orientationChanged:(NSNotification *)notification
 {
     // Tracking Orientation Changes
@@ -103,14 +159,17 @@
     if(AdsEnabled&&![[IAPHelper sharedInstance]getIAP1]){
         WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height);
     
-    
+        if(!PreiOS8){
         bannerView_.frame = CGRectMake(0,[WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).width,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height);
+        }
     }else{
         WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height);
     }
 }
+
+#pragma mark Admob methods
 
 -(void)CreateAd{
         
@@ -143,6 +202,10 @@
     // Initiate a generic request to load it with an ad.
     [bannerView_ loadRequest:[GADRequest request]];
 }
+
+
+#pragma mark Local JSON methods
+
 
 - (void)fetchedDataLocal:(NSData *)responseData {
     //parse out the json data
@@ -334,23 +397,20 @@
             [WebView setBackgroundColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:243/255.0f alpha:1.0]];
             WebViewControls.translucent=NO;
             WebViewControls.barTintColor=[UIColor colorWithRed:rShadow/255.0f green:gShadow/255.0f blue:bShadow/255.0f alpha:1.0];
+            
+            
+            //TEST REMOTE JSON
+            //[self GetRemoteJSON];
         }
     }
 }
 
-#pragma mark TableView methods
 
-
-
+#pragma mark Alert methods
 -(void)ShowAlert{
     AlertSelected=1;
 if (!PreiOS8) {
     // iOS 8 & newer logic
-    
-//    NSURL *url2 = [NSURL URLWithString:@"http://itunes.apple.com/app/id961640913?at=10lun6"];//?mt=8
-//    NSURL *url3 = [NSURL URLWithString:@"https://itunes.apple.com/artist/id409029298?at=10lun6"];
-    
-    
     
     UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:[SettingsArray[2] objectForKey:@"AlertTitle"]
@@ -385,8 +445,6 @@ if (!PreiOS8) {
                                      [UIView commitAnimations];
                                      MenuShow=false;
                                      
-                                 }else if([ButtonURL isEqualToString:@"alert"]){
-                                     [self ShowAlert];
                                  }else if([ButtonURL isEqualToString:@"iap"]){
                                      [self ShowIAPAlert];
                                  }else if([ButtonURL isEqualToString:@"notification"]){
@@ -463,61 +521,6 @@ if (!PreiOS8) {
 }
 }
 
--(void)ShowIAPAlert{
-    AlertSelected=2;
-    if (!PreiOS8) {
-        // iOS 8 logic
-        
-        UIAlertController * alert=   [UIAlertController
-                                      alertControllerWithTitle:AppNameString
-                                      message:@"Remove Ads"
-                                      preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction
-                             actionWithTitle:@"Purchase 'Remove Ads'"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 [[IAPHelper sharedInstance] purchaseIAP1];
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                 
-                             }];
-        UIAlertAction* ok2 = [UIAlertAction
-                              actionWithTitle:@"Restore"
-                              style:UIAlertActionStyleDefault
-                              handler:^(UIAlertAction * action)
-                              {
-                                  [[IAPHelper sharedInstance] restore];
-                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                  
-                              }];
-        UIAlertAction* cancel2 = [UIAlertAction
-                                  actionWithTitle:@"Thanks! Maybe Later"
-                                  style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * action)
-                                  {
-                                      [alert dismissViewControllerAnimated:YES completion:nil];
-                                      
-                                  }];
-        
-        [alert addAction:ok];
-        [alert addAction:ok2];
-        [alert addAction:cancel2];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
-    } else {
-        // iOS 7 logic
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:AppNameString
-                                                        message:@"Remove Ads"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Thanks! Maybe Later"
-                                              otherButtonTitles:@"Purchase 'Remove Ads'", @"Restore",nil];
-        
-        [alert show];
-    }
-}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     //iOS 7
@@ -690,8 +693,6 @@ if (!PreiOS8) {
                 [UIView commitAnimations];
                 MenuShow=false;
                 
-            }else if([MenuItemString isEqualToString:@"alert"]){
-                [self ShowAlert];
             }else if([MenuItemString isEqualToString:@"iap"]){
                 [self ShowIAPAlert];
             }else if([MenuItemString isEqualToString:@"notification"]){
@@ -736,45 +737,64 @@ if (!PreiOS8) {
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)MenuAction {
-    if (!MenuShow) {
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:.5];
-        [UIView setAnimationDelay:0];
-        [UIView setAnimationRepeatCount:0];
-        WebViewImageView.alpha=.7;
-        WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width,WebViewContainer.center.y);
-        MenuTable.center=CGPointMake([MenuTable bounds].size.width/2,MenuTable.center.y);
-        DarkImageView.alpha=.5;
-        [UIView commitAnimations];
-        MenuShow=true;
-    }else{
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:.5];
-        [UIView setAnimationDelay:0];
-        [UIView setAnimationRepeatCount:0];
-        WebViewImageView.alpha=0;
-        if(!HomeShow){
-            WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
-        }else{
-            WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width+[[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
 
-        }
-        MenuTable.center=CGPointMake(-[MenuTable bounds].size.width/2,MenuTable.center.y);
-        DarkImageView.alpha=0;
-        [UIView commitAnimations];
-        MenuShow=false;
+
+#pragma mark In App Purchase methods
+
+-(void)ShowIAPAlert{
+    AlertSelected=2;
+    if (!PreiOS8) {
+        // iOS 8 logic
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:AppNameString
+                                      message:@"Remove Ads"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"Purchase 'Remove Ads'"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [[IAPHelper sharedInstance] purchaseIAP1];
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        UIAlertAction* ok2 = [UIAlertAction
+                              actionWithTitle:@"Restore"
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [[IAPHelper sharedInstance] restore];
+                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                  
+                              }];
+        UIAlertAction* cancel2 = [UIAlertAction
+                                  actionWithTitle:@"Thanks! Maybe Later"
+                                  style:UIAlertActionStyleDefault
+                                  handler:^(UIAlertAction * action)
+                                  {
+                                      [alert dismissViewControllerAnimated:YES completion:nil];
+                                      
+                                  }];
+        
+        [alert addAction:ok];
+        [alert addAction:ok2];
+        [alert addAction:cancel2];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        // iOS 7 logic
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:AppNameString
+                                                        message:@"Remove Ads"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Thanks! Maybe Later"
+                                              otherButtonTitles:@"Purchase 'Remove Ads'", @"Restore",nil];
+        
+        [alert show];
     }
-}
-
-- (IBAction)DetailsAction {
-    
-    //[[PushController sharedInstance] AllowNotificationsAlert];
-
-    //[[iRate sharedInstance] promptForRating];
-    
-    [self ShowAlert];
-   
 }
 
 - (void) PurchasedIAP1{
@@ -792,15 +812,259 @@ if (!PreiOS8) {
     }
     
 }
-//Add These for additional IAPs
+//Add These for additional IAP
 //- (void) PurchasedIAP2{}
-//- (void) PurchasedIAP3{}
-//- (void) PurchasedIAP4{}
-//- (void) PurchasedIAP5{}
-//- (void) PurchasedIAP6{}
-//- (void) PurchasedIAP7{}
-//- (void) PurchasedIAP8{}
-//- (void) PurchasedIAP9{}
-//- (void) PurchasedIAP10{}
+
+
+
+#pragma mark Remote JSON methods
+
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+#define kjsonURL [NSURL URLWithString: @"http://madcalfapps.blob.core.windows.net/freevideogame/remote.json"]
+
+-(void)GetRemoteJSON{
+    //Once Per Day
+    //    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    //    format.dateFormat = @"dd-MM-yyyy";
+    //    NSDate *myDate = [NSDate date];
+    //    NSString *theDate = [format stringFromDate:myDate];
+    //    NSLog(@"%@",theDate);
+    //
+    //    [[NSUserDefaults standardUserDefaults] setValue:theDate forKey:@"fieldKey3"];
+    //    [[NSUserDefaults standardUserDefaults] synchronize];
+    //    NSString *theDate2 = [[NSUserDefaults standardUserDefaults]
+    //                          stringForKey:@"fieldKey2"];
+    //
+    //
+    //
+    //    if([theDate isEqualToString:theDate2]){
+    //        NSLog(@"No Need For JSON");
+    //    }else{
+    NSLog(@"I Need JSON");
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL: kjsonURL];
+        [self performSelectorOnMainThread:@selector(fetchedData:) withObject:data waitUntilDone:YES];
+    });
+    //    }
+    
+}
+
+- (void)fetchedData:(NSData *)responseData {
+    //parse out the json data
+    NSError* error;
+    
+    
+    
+    if(responseData==nil){
+        
+        NSLog(@"JSON Can't Find Data");
+        
+        //   [self Here];
+        
+    }else{
+        NSLog(@"JSON Get");
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData //1
+                                                             options:kNilOptions
+                                                               error:&error];
+        
+        
+        SettingsArray = [json objectForKey:@"AppSettings"]; //2
+        MenuArray = [json objectForKey:@"MenuItems"];
+        AlertArray = [json objectForKey:@"AlertItems"];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:SettingsArray forKey:@"SettingsArray"];
+        [defaults setValue:MenuArray forKey:@"MenuArray"];
+        [defaults setValue:AlertArray forKey:@"AlertArray"];
+        [defaults synchronize];
+        
+        [defaults setValue:[SettingsArray[3] objectForKey:@"PushMessage"] forKey:@"PushMessage"];
+        [defaults setValue:[SettingsArray[3] objectForKey:@"DaysUntilPush"] forKey:@"DaysUntilPush"];
+        [defaults synchronize];
+        
+        if(SettingsArray==NULL){
+            
+            NSLog(@"JSON Object Not There");
+            
+        }else{
+            NSLog(@"JSON Refresh View");
+            
+            [self RefreshView];
+            
+        }
+    }
+}
+
+- (void) RefreshView{
+    //Enter methods for IAP1 purchase
+    
+    NSLog(@"JSON Refresh View 2");
+    
+    SettingsArray = [NSArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"SettingsArray"]];
+    MenuArray = [NSArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"MenuArray"]];
+    AlertArray = [NSArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"AlertArray"]];
+    
+    
+    AppNameString = [SettingsArray[0] objectForKey:@"AppName"];
+    NSString* HeaderColorString = [SettingsArray[0] objectForKey:@"HeaderColor"];
+    NSString* HeaderLabelString = [SettingsArray[0] objectForKey:@"HeaderLabel"];
+    NSString* TagLineString = [SettingsArray[0] objectForKey:@"TagLine"];
+    NSString* MenuItemsInt = [SettingsArray[0] objectForKey:@"MenuItems"];
+    NSString* AdEnabledString = [SettingsArray[0] objectForKey:@"AdmobAdEnabled"];;
+    AlertMessageString = [SettingsArray[2] objectForKey:@"AlertMessage"];
+    NSString* MenuItemsString;
+    
+    // Check for Ad
+    if ([AdEnabledString isEqualToString:@"true"]&&![[IAPHelper sharedInstance]getIAP1]){
+        AdsEnabled=true;
+    }else{
+        AdsEnabled=false;
+    }
+    
+    if ([[IAPHelper sharedInstance]getIAP1]||!AdsEnabled) {
+        //No Ads
+    }else{
+        //Ads
+      //  [self CreateAd];
+        
+    }
+    
+    if(AdState==1){
+        [self ShowPortrait];
+    }else{
+        [self ShowLandscape];
+    }
+    
+    MenuItems = [MenuItemsInt intValue];
+    
+    AppQuote.text = TagLineString;
+    
+    for (int i=0; i < MenuItems; i++) {
+        MenuItemsString = [MenuArray[i] objectForKey:@"MenuTitle"];
+        [ContentArray addObject:MenuItemsString];
+    }
+    
+    [MenuTable reloadData];
+    
+    if(SettingsArray==NULL){
+        
+        
+        
+        NSLog(@"JSON Object Not There");
+        
+        
+        // [self Here];
+    }else{
+        
+        NSLog(@"JSON Object There");
+        
+        MenuTable.center=CGPointMake(-[MenuTable bounds].size.width/2,MenuTable.center.y);
+        
+        HeaderLabel.text=HeaderLabelString;
+        
+        
+        if([HeaderColorString isEqualToString:@"1"]){
+            //Red
+            r=26;
+            g=188;
+            b=156;
+            rShadow=22;
+            gShadow=160;
+            bShadow=133;
+        }else if([HeaderColorString isEqualToString:@"2"]){
+            //Light Blue
+            r=46;
+            g=204;
+            b=113;
+            rShadow=39;
+            gShadow=174;
+            bShadow=96;
+        }else if([HeaderColorString isEqualToString:@"3"]){
+            //Light Blue
+            r=52;
+            g=152;
+            b=219;
+            rShadow=41;
+            gShadow=128;
+            bShadow=185;
+        }else if([HeaderColorString isEqualToString:@"4"]){
+            //Light Blue
+            r=155;
+            g=89;
+            b=182;
+            rShadow=142;
+            gShadow=68;
+            bShadow=173;
+        }else if([HeaderColorString isEqualToString:@"5"]){
+            //Light Blue
+            r=52;
+            g=73;
+            b=94;
+            rShadow=44;
+            gShadow=62;
+            bShadow=80;
+        }else if([HeaderColorString isEqualToString:@"6"]){
+            //Light Blue
+            r=241;
+            g=196;
+            b=15;
+            rShadow=243;
+            gShadow=156;
+            bShadow=18;
+        }else if([HeaderColorString isEqualToString:@"7"]){
+            //Light Blue
+            r=230;
+            g=126;
+            b=34;
+            rShadow=211;
+            gShadow=84;
+            bShadow=0;
+        }else if([HeaderColorString isEqualToString:@"8"]){
+            //Light Blue
+            r=231;
+            g=76;
+            b=60;
+            rShadow=192;
+            gShadow=57;
+            bShadow=43;
+        }else if([HeaderColorString isEqualToString:@"9"]){
+            //Light Blue
+            r=149;
+            g=165;
+            b=166;
+            rShadow=127;
+            gShadow=140;
+            bShadow=141;
+        }else if([HeaderColorString isEqualToString:@"10"]){
+            NSString* CustomColorRString = [SettingsArray[1] objectForKey:@"CustomColorR"];
+            NSString* CustomColorGString = [SettingsArray[1] objectForKey:@"CustomColorG"];
+            
+            NSString* CustomColorBString = [SettingsArray[1] objectForKey:@"CustomColorB"];
+            
+            NSString* CustomColorRShadowString = [SettingsArray[1] objectForKey:@"CustomColorRShadow"];
+            
+            NSString* CustomColorGShadowString = [SettingsArray[1] objectForKey:@"CustomColorGShadow"];
+            
+            NSString* CustomColorBShadowString = [SettingsArray[1] objectForKey:@"CustomColorBShadow"];
+            
+            r=[CustomColorRString intValue];
+            g=[CustomColorGString intValue];
+            b=[CustomColorBString intValue];
+            rShadow=[CustomColorRShadowString intValue];
+            gShadow=[CustomColorGShadowString intValue];
+            bShadow=[CustomColorBShadowString intValue];
+        }
+        StatusBar.backgroundColor = [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0];
+        HeaderContainer.backgroundColor = [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0];
+        HeaderShadow.backgroundColor = [UIColor colorWithRed:rShadow/255.0f green:gShadow/255.0f blue:bShadow/255.0f alpha:1.0];
+        WebViewImageView.backgroundColor = [UIColor colorWithRed:rShadow/255.0f green:gShadow/255.0f blue:bShadow/255.0f alpha:1.0];
+        [WebView setBackgroundColor:[UIColor colorWithRed:235/255.0f green:235/255.0f blue:243/255.0f alpha:1.0]];
+        WebViewControls.translucent=NO;
+        WebViewControls.barTintColor=[UIColor colorWithRed:rShadow/255.0f green:gShadow/255.0f blue:bShadow/255.0f alpha:1.0];
+    }
+    
+    
+}
+
 
 @end
