@@ -9,10 +9,9 @@ This project includes the implementation of some of the most popular iOS native 
 
 ## Install Instructions
 1. Click the "Download Zip" button on the right side of your screen.
-2. Open the xcode project file.
-3. Find the GoogleMobileAds.Framework & libAdapterIAd.a files in the project navigator on the left hand side of xcode.
-4. Select the file and check the box on the right hand side of the screen under Target Membership that says Complete iOS Toolkit. (This will relink the libraries) 
-5. Now Build & Run
+2. Edit "local.json"
+3. Replace logo.png & background.png
+4. Now Build & Run
 
 ## Edit "local.json" to customize the app.
 
