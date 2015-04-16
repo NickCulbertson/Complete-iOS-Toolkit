@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface PushController : NSObject
-+ (PushController*) sharedInstance;
+@interface PushHelper : NSObject
++ (PushHelper*) sharedInstance;
 
 -(void)CreatePush;
 -(void)AllowNotificationsAlert;

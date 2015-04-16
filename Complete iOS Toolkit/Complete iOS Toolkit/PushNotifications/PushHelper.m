@@ -6,15 +6,15 @@
 //  Copyright (c) 2015 Nick Culbertson. All rights reserved.
 //
 
-#import "PushController.h"
+#import "PushHelper.h"
 
 
-@implementation PushController
-PushController* _sharedAppPush;
+@implementation PushHelper
+PushHelper* _sharedAppPush;
 
-+ (PushController*) sharedInstance{
++ (PushHelper*) sharedInstance{
     if ( ! _sharedAppPush )
-        _sharedAppPush = [[PushController alloc] init];
+        _sharedAppPush = [[PushHelper alloc] init];
     return _sharedAppPush;
 }
 - (id)init{
@@ -96,13 +96,13 @@ PushController* _sharedAppPush;
 }
 
 -(void)CreatePush{
-
+    NSLog(@"Create Push");
     NSString *PushMessage;
     int Days;
 
     
     if([[NSUserDefaults standardUserDefaults] valueForKey:@"PushMessage"]==NULL){
-        PushMessage = @"The app has just been updated. Come check out what all is new.";
+        PushMessage = @"The App has just been updated. Come check out what all is new.";
         
     }else{
         PushMessage = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushMessage"];
@@ -118,6 +118,9 @@ PushController* _sharedAppPush;
     // Create new UILocalNotification object.
     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
     
+    //Ten Second Test
+    //localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow: 10];
+
     // Set the date and time of the notification.
     localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * Days];
     

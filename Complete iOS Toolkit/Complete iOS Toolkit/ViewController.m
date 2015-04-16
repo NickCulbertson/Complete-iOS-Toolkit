@@ -8,9 +8,13 @@
 
 #import "ViewController.h"
 #import "iRate.h"
-#import "PushController.h"
+#import "PushHelper.h"
 #import "IAPHelper.h"
 #import "AppUserDefaults.h"
+
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+#define kjsonURL [NSURL URLWithString: @"http://madcalfapps.blob.core.windows.net/freevideogame/remote.json"]
+
 
 @interface ViewController ()
 
@@ -32,7 +36,6 @@
     WebView.delegate = self;
     [WebView addSubview:ActivityIndicator];
     WebView.scalesPageToFit = YES;
-    
     
     // Checking the device iOS version running
     NSArray *versionArray = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
@@ -448,7 +451,7 @@ if (!PreiOS8) {
                                  }else if([ButtonURL isEqualToString:@"iap"]){
                                      [self ShowIAPAlert];
                                  }else if([ButtonURL isEqualToString:@"notification"]){
-                                     [[PushController sharedInstance] AllowNotificationsAlert];
+                                     [[PushHelper sharedInstance] AllowNotificationsAlert];
                                  }else if([ButtonURL isEqualToString:@"rate"]){
                                      [[iRate sharedInstance] openRatingsPageInAppStore];
                                  }else if([ButtonURL isEqualToString:@"cancel"]){
@@ -554,7 +557,7 @@ if (!PreiOS8) {
             }else if([ButtonURL isEqualToString:@"iap"]){
                 [self ShowIAPAlert];
             }else if([ButtonURL isEqualToString:@"notification"]){
-                [[PushController sharedInstance] AllowNotificationsAlert];
+                [[PushHelper sharedInstance] AllowNotificationsAlert];
             }else if([ButtonURL isEqualToString:@"rate"]){
                 [[iRate sharedInstance] openRatingsPageInAppStore];
             }else if([ButtonURL isEqualToString:@"cancel"]){
@@ -696,7 +699,7 @@ if (!PreiOS8) {
             }else if([MenuItemString isEqualToString:@"iap"]){
                 [self ShowIAPAlert];
             }else if([MenuItemString isEqualToString:@"notification"]){
-                [[PushController sharedInstance] AllowNotificationsAlert];
+                [[PushHelper sharedInstance] AllowNotificationsAlert];
             }else if([MenuItemString isEqualToString:@"rate"]){
                 [[iRate sharedInstance] openRatingsPageInAppStore];
             }else{
@@ -818,9 +821,6 @@ if (!PreiOS8) {
 
 
 #pragma mark Remote JSON methods
-
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-#define kjsonURL [NSURL URLWithString: @"http://madcalfapps.blob.core.windows.net/freevideogame/remote.json"]
 
 -(void)GetRemoteJSON{
     //Once Per Day

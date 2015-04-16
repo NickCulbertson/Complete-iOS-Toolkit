@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "iRate.h"
-#import "PushController.h"
+#import "PushHelper.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    [[PushController sharedInstance] RemovePush];
+    [[PushHelper sharedInstance] RemovePush];
     
     return YES;
 }
@@ -50,7 +50,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     
-    [[PushController sharedInstance] RemovePush];
+    [[PushHelper sharedInstance] CreatePush];
 
     
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
@@ -68,7 +68,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     
-    [[PushController sharedInstance] RemovePush];
+    [[PushHelper sharedInstance] RemovePush];
 
     
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
