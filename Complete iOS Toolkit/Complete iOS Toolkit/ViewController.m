@@ -19,11 +19,10 @@
 
 - (void)viewDidLoad {
 
+    // Setting Up The App UI
     HomeShow=true;
-    
     LogoImageView.contentMode = UIViewContentModeScaleAspectFit;
     AppQuote.contentMode = UIViewContentModeScaleAspectFit;
-    
     WebViewImageView.alpha=0;
     DarkImageView.alpha=0;
     MenuItems=0;
@@ -32,6 +31,8 @@
     [WebView addSubview:ActivityIndicator];
     WebView.scalesPageToFit = YES;
     
+    
+    // Checking the device iOS version running
     NSArray *versionArray = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
     NSLog(@"%d",[[versionArray objectAtIndex:0]intValue]);
     if ([[versionArray objectAtIndex:0] intValue] >= 8) {
@@ -41,25 +42,14 @@
     }
     
     
-    AdsEnabled=true;
-    
-    if ([[IAPHelper sharedInstance]getIAP1]||!AdsEnabled) {
-        //No Ads
-    }else{
-        //Ads
-        [self CreateAd];
-    
-    }
-    
+    // Getting "local.json" settings
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"local" ofType:@"json"];
     NSData* data = [NSData dataWithContentsOfFile:filePath];
-    
-    
     NSLog(@"%@",filePath);
-    
     [self performSelectorOnMainThread:@selector(fetchedDataLocal:) withObject:data waitUntilDone:YES];
     
     
+    // Tracking Orientation Changes
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(orientationChanged:)
@@ -72,29 +62,24 @@
 
 - (void)orientationChanged:(NSNotification *)notification
 {
-    NSLog(@"change orientation");
-    
+    // Tracking Orientation Changes
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    
+    NSLog(@"change orientation");
     if (UIDeviceOrientationIsLandscape(deviceOrientation)){
-        
-        
         if(AdState!=2){
             NSLog(@"Landscape Ad");
             AdState=2;
-        [self ShowLandscape];
+            [self ShowLandscape];
         }
         
     }else if (UIDeviceOrientationIsPortrait(deviceOrientation)){
-        
-        
         if(AdState!=1){
             NSLog(@"Portrait Ad");
             AdState=1;
-        [self ShowPortrait];
+            [self ShowPortrait];
         }
     }else{
-        
+        // Device is facing up or facing down
     }
     
     
@@ -102,27 +87,21 @@
 
 -(void)ShowPortrait{
     
-        NSLog(@"Portrait Ad YES");
-    
-    if(AdsEnabled){
-    WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height);
+    if(AdsEnabled&&![[IAPHelper sharedInstance]getIAP1]){
+        WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height);
     
         bannerView_.frame = CGRectMake(0,[WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).width,
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerPortrait).height);
     }else{
         WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height);
-        
     }
-    
-    
 }
+
 -(void)ShowLandscape{
-  
-     NSLog(@"Landscape Ad YES");
     
-    if(AdsEnabled){
-    WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height);
+    if(AdsEnabled&&![[IAPHelper sharedInstance]getIAP1]){
+        WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height);
     
     
         bannerView_.frame = CGRectMake(0,[WebViewContainer bounds].size.height-[WebViewControls bounds].size.height-CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height,
@@ -130,13 +109,11 @@
                                        CGSizeFromGADAdSize(kGADAdSizeSmartBannerLandscape).height);
     }else{
         WebView.frame = CGRectMake(0, 0, [WebViewContainer bounds].size.width, [WebViewContainer bounds].size.height-[WebViewControls bounds].size.height);
-        
-        
     }
-    
 }
 
 -(void)CreateAd{
+        
     CGPoint origin = CGPointMake(0.0,
                                  [WebViewContainer bounds].size.height -
                                  [WebViewControls bounds].size.height -
@@ -147,12 +124,19 @@
     bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait origin:origin];
     
     // Specify the ad unit ID.
-    bannerView_.adUnitID = @"ca-app-pub-0325717490228488/1458343033";
+    bannerView_.adUnitID = [SettingsArray[0] objectForKey:@"AdmobAdID"];
+    
+    //DECLARE VALUE LOCALLY (WITHOUT JSON) LIKE THIS:
+    //bannerView_.adUnitID = @"YOUR_AD_ID";
     
     // Let the runtime know which UIViewController to restore after taking
     // the user wherever the ad goes and add it to the view hierarchy.
     bannerView_.rootViewController = self;
     [WebViewContainer addSubview:bannerView_];
+    
+    //APPLY AD TO THE MAIN VIEW WITH:
+    //[self addSubview:bannerView_];
+    
     [bannerView_ setDelegate:self];
     
     
@@ -160,11 +144,6 @@
     [bannerView_ loadRequest:[GADRequest request]];
 }
 
-
-- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification{
-    
-    
-}
 - (void)fetchedDataLocal:(NSData *)responseData {
     //parse out the json data
     NSError* error;
@@ -184,6 +163,22 @@
         
         SettingsArray = [json objectForKey:@"AppSettings"]; //2
         MenuArray = [json objectForKey:@"MenuItems"];
+        AlertArray = [json objectForKey:@"AlertItems"];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:SettingsArray forKey:@"SettingsArray"];
+        [defaults setValue:MenuArray forKey:@"MenuArray"];
+        [defaults setValue:AlertArray forKey:@"AlertArray"];
+        [defaults synchronize];
+        
+        [defaults setValue:[SettingsArray[3] objectForKey:@"PushMessage"] forKey:@"PushMessage"];
+        [defaults setValue:[SettingsArray[3] objectForKey:@"DaysUntilPush"] forKey:@"DaysUntilPush"];
+        [defaults synchronize];
+
+        
+        SettingsArray = [NSArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"SettingsArray"]];
+        MenuArray = [NSArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"MenuArray"]];
+        AlertArray = [NSArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"AlertArray"]];
         
         
         AppNameString = [SettingsArray[0] objectForKey:@"AppName"];
@@ -191,8 +186,30 @@
         NSString* HeaderLabelString = [SettingsArray[0] objectForKey:@"HeaderLabel"];
         NSString* TagLineString = [SettingsArray[0] objectForKey:@"TagLine"];
         NSString* MenuItemsInt = [SettingsArray[0] objectForKey:@"MenuItems"];
+        NSString* AdEnabledString = [SettingsArray[0] objectForKey:@"AdmobAdEnabled"];;
         AlertMessageString = [SettingsArray[2] objectForKey:@"AlertMessage"];
         NSString* MenuItemsString;
+        
+        // Check for Ad
+        if ([AdEnabledString isEqualToString:@"true"]&&![[IAPHelper sharedInstance]getIAP1]){
+            AdsEnabled=true;
+        }else{
+            AdsEnabled=false;
+        }
+        
+        if ([[IAPHelper sharedInstance]getIAP1]||!AdsEnabled) {
+            //No Ads
+        }else{
+            //Ads
+            [self CreateAd];
+            
+        }
+        
+        if(AdState==1){
+            [self ShowPortrait];
+        }else{
+            [self ShowLandscape];
+        }
         
         MenuItems = [MenuItemsInt intValue];
         
@@ -322,139 +339,132 @@
 }
 
 #pragma mark TableView methods
--(void)AllowAlert{
-    
-    if (!PreiOS8) {
-        
-        UIAlertController * alert=   [UIAlertController
-                                      alertControllerWithTitle:@"Nature Soundscapes: Notifications"
-                                      message:@"Would you like to receive occasional notifications about new sounds, reminders & updates?"
-                                      preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* ok = [UIAlertAction
-                             actionWithTitle:@"Not Now"
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action)
-                             {
-                                 //   [[UIApplication sharedApplication]  openURL:url2];
-                                 [alert dismissViewControllerAnimated:YES completion:nil];
-                                 
-                             }];
-        UIAlertAction* ok2 = [UIAlertAction
-                              actionWithTitle:@"OK"
-                              style:UIAlertActionStyleDefault
-                              handler:^(UIAlertAction * action)
-                              {
-                                  
-                                  [self AllowNotifications];
-                                  
-                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                  
-                              }];
-        
-        [alert addAction:ok];
-        [alert addAction:ok2];
-        
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        NSLog(@"8");
-    } else {
-        // iOS 7 and below logic
-        NSLog(@"7");
-       // alarmcount=3;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nature Soundscapes: Notifications"
-                                                        message:@"Would you like to receive occasional notifications about new sounds, reminders & updates?"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Not Now"
-                                              otherButtonTitles:@"OK",nil];
-        
-        [alert show];
-    }
-}
 
--(void)AllowNotifications{
-    
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults setObject:@"4" forKey:@"Launchtime4"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
 
-    
-    if (!PreiOS8) {
-        UIUserNotificationSettings *settings =
-        [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
-         UIUserNotificationTypeBadge |
-         UIUserNotificationTypeSound
-                                          categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }else{
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-         UIRemoteNotificationTypeAlert |
-         UIRemoteNotificationTypeBadge |
-         UIRemoteNotificationTypeSound];
-    }
-}
 
 -(void)ShowAlert{
+    AlertSelected=1;
 if (!PreiOS8) {
-    // iOS 8 logic
+    // iOS 8 & newer logic
     
 //    NSURL *url2 = [NSURL URLWithString:@"http://itunes.apple.com/app/id961640913?at=10lun6"];//?mt=8
 //    NSURL *url3 = [NSURL URLWithString:@"https://itunes.apple.com/artist/id409029298?at=10lun6"];
     
+    
+    
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:AppNameString
-                                  message:AlertMessageString
+                                  alertControllerWithTitle:[SettingsArray[2] objectForKey:@"AlertTitle"]
+                                  message:[SettingsArray[2] objectForKey:@"AlertMessage"]
                                   preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"Enable Notifications"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [[PushController sharedInstance] AllowNotificationsAlert];
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    UIAlertAction* ok2 = [UIAlertAction
-                          actionWithTitle:@"Rate App"
-                          style:UIAlertActionStyleDefault
-                          handler:^(UIAlertAction * action)
-                          {
-                              [[iRate sharedInstance] openRatingsPageInAppStore];
-                              [alert dismissViewControllerAnimated:YES completion:nil];
-                              
-                          }];
-    UIAlertAction* cancel2 = [UIAlertAction
-                              actionWithTitle:@"Thanks! Maybe Later"
-                              style:UIAlertActionStyleDefault
-                              handler:^(UIAlertAction * action)
-                              {
-                                  [alert dismissViewControllerAnimated:YES completion:nil];
-                                  
-                              }];
-    
-    [alert addAction:ok];
-    [alert addAction:ok2];
-    [alert addAction:cancel2];
-    
+    for (int i=0; i < [[SettingsArray[2] objectForKey:@"AlertItems"] intValue]; i++) {
+        NSString * ButtonName = [AlertArray[i] objectForKey:@"AlertButton"];
+        NSString * ButtonURL = [AlertArray[i] objectForKey:@"AlertURL"];
+        UIAlertAction* i = [UIAlertAction
+                             actionWithTitle:ButtonName
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 if([ButtonURL isEqualToString:@"home"]){
+                                     HomeShow=true;
+                                     [WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+                                     
+                                     HeaderLabel.text=AppNameString;
+                                     
+                                     //WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width,WebViewContainer.center.y);
+                                     
+                                     [UIView beginAnimations:nil context:NULL];
+                                     [UIView setAnimationDuration:.5];
+                                     [UIView setAnimationDelay:0];
+                                     [UIView setAnimationRepeatCount:0];
+                                     WebViewImageView.alpha=0;
+                                     WebView.alpha=0;
+                                     MenuTable.center=CGPointMake(-[MenuTable bounds].size.width/2,MenuTable.center.y);
+                                     WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width+[[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
+                                     DarkImageView.alpha=0;
+                                     [UIView commitAnimations];
+                                     MenuShow=false;
+                                     
+                                 }else if([ButtonURL isEqualToString:@"alert"]){
+                                     [self ShowAlert];
+                                 }else if([ButtonURL isEqualToString:@"iap"]){
+                                     [self ShowIAPAlert];
+                                 }else if([ButtonURL isEqualToString:@"notification"]){
+                                     [[PushController sharedInstance] AllowNotificationsAlert];
+                                 }else if([ButtonURL isEqualToString:@"rate"]){
+                                     [[iRate sharedInstance] openRatingsPageInAppStore];
+                                 }else if([ButtonURL isEqualToString:@"cancel"]){
+
+                                 }else{
+                                     HomeShow=false;
+                                     WebView.alpha=0;
+                                     
+                                     [WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ButtonURL]]];
+                                     HeaderLabel.text=ButtonName;
+                                     
+                                     //WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width,WebViewContainer.center.y);
+                                     
+                                     [UIView beginAnimations:nil context:NULL];
+                                     [UIView setAnimationDuration:.5];
+                                     [UIView setAnimationDelay:0];
+                                     [UIView setAnimationRepeatCount:0];
+                                     WebViewImageView.alpha=0;
+                                     WebView.alpha=1;
+                                     MenuTable.center=CGPointMake(-[MenuTable bounds].size.width/2,MenuTable.center.y);
+                                     WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
+                                     DarkImageView.alpha=0;
+                                     [UIView commitAnimations];
+                                     MenuShow=false;
+                                     
+                                 }
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+
+                                 
+                                 
+                             }];
+        [alert addAction:i];
+
+    }
     [self presentViewController:alert animated:YES completion:nil];
    
 } else {
     // iOS 7 logic
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:AppNameString
-                                                    message:@"I'm an Indie Dev.\nI'm just one guy, not a company.\nIf you are enjoying the app, please leave a good review. I rely on your reviews to do what I do!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Thanks! Maybe Later"
-                                          otherButtonTitles:@"Review Tiny Drums", @"More Apps",nil];
+    NSMutableArray *ButtonArray = [[NSMutableArray alloc] init];
+    int ButtonCount = [[SettingsArray[2] objectForKey:@"AlertItems"] intValue];
+    for (int i=0; i < ButtonCount; i++) {
+        NSString * ButtonName = [AlertArray[i] objectForKey:@"AlertButton"];
+       // NSString * ButtonURL = [AlertArray[i] objectForKey:@"AlertURL"];
+        [ButtonArray addObject:ButtonName];
+        //ButtonURL = [ButtonArray objectAtIndex:0];
+     
+    }
     
-    [alert show];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[SettingsArray[2] objectForKey:@"AlertTitle"]
+                                                    message:[SettingsArray[2] objectForKey:@"AlertMessage"]
+                                                   delegate:self
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:nil];
+    
+    
+    for (int i=0; i < ButtonCount; i++) {
+
+    [alert addButtonWithTitle: ButtonArray[i]];
+        
+    }
+    
+    
+    //[alert setCancelButtonIndex: [buttonTitles count] - 1];
+    
+
+        [alert show];
+
+    
 }
 }
 
 -(void)ShowIAPAlert{
+    AlertSelected=2;
     if (!PreiOS8) {
         // iOS 8 logic
         
@@ -510,22 +520,78 @@ if (!PreiOS8) {
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    //iOS 7 Only
-    NSURL *url2 = [NSURL URLWithString:@"http://itunes.apple.com/app/id961640913?at=10lun6"];//?mt=8
-    NSURL *url3 = [NSURL URLWithString:@"http://madcalfapps.blogspot.com/2013/02/top-40-radio.html"];
-    
-    if (buttonIndex == 2){
-        [[UIApplication sharedApplication]  openURL:url3];
-        NSLog(@"Remove button clicked");
-    }
-    if (buttonIndex == 1){
-        [[UIApplication sharedApplication]  openURL:url2];
-        NSLog(@"Remove button clicked");
-    }
-    
-    if (buttonIndex == 0){
+    //iOS 7
+    if(AlertSelected==1){
+    for (int i=0; i < [[SettingsArray[2] objectForKey:@"AlertItems"] intValue]; i++) {
+        if (buttonIndex == i){
+            NSString * ButtonURL = [AlertArray[i] objectForKey:@"AlertURL"];
+            NSString * ButtonName = [AlertArray[i] objectForKey:@"AlertButton"];
+            if([ButtonURL isEqualToString:@"home"]){
+                HomeShow=true;
+                [WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+                
+                HeaderLabel.text=AppNameString;
+                
+                //WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width,WebViewContainer.center.y);
+                
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:.5];
+                [UIView setAnimationDelay:0];
+                [UIView setAnimationRepeatCount:0];
+                WebViewImageView.alpha=0;
+                WebView.alpha=0;
+                MenuTable.center=CGPointMake(-[MenuTable bounds].size.width/2,MenuTable.center.y);
+                WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width+[[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
+                DarkImageView.alpha=0;
+                [UIView commitAnimations];
+                MenuShow=false;
+                
+            }else if([ButtonURL isEqualToString:@"alert"]){
+                [self ShowAlert];
+            }else if([ButtonURL isEqualToString:@"iap"]){
+                [self ShowIAPAlert];
+            }else if([ButtonURL isEqualToString:@"notification"]){
+                [[PushController sharedInstance] AllowNotificationsAlert];
+            }else if([ButtonURL isEqualToString:@"rate"]){
+                [[iRate sharedInstance] openRatingsPageInAppStore];
+            }else if([ButtonURL isEqualToString:@"cancel"]){
+                
+            }else{
+                HomeShow=false;
+                WebView.alpha=0;
+                
+                [WebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ButtonURL]]];
+                HeaderLabel.text=ButtonName;
+                
+                //WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width,WebViewContainer.center.y);
+                
+                [UIView beginAnimations:nil context:NULL];
+                [UIView setAnimationDuration:.5];
+                [UIView setAnimationDelay:0];
+                [UIView setAnimationRepeatCount:0];
+                WebViewImageView.alpha=0;
+                WebView.alpha=1;
+                MenuTable.center=CGPointMake(-[MenuTable bounds].size.width/2,MenuTable.center.y);
+                WebViewContainer.center=CGPointMake([[UIScreen mainScreen] bounds].size.width/2,WebViewContainer.center.y);
+                DarkImageView.alpha=0;
+                [UIView commitAnimations];
+                MenuShow=false;
+                
+            }
+        }
         
     }
+    }else if(AlertSelected==2){
+        if (buttonIndex == 0){
+            [[IAPHelper sharedInstance] purchaseIAP1];
+        }else if(buttonIndex == 1){
+            [[IAPHelper sharedInstance] restore];
+        }else if(buttonIndex == 3){
+            
+        }
+        
+    }
+    
 }
 
 
@@ -714,7 +780,9 @@ if (!PreiOS8) {
 - (void) PurchasedIAP1{
     //Enter methods for IAP1 purchase
     
+    [[IAPHelper sharedInstance]setIAP1:YES];
     AdsEnabled=false;
+    
     [bannerView_ removeFromSuperview];
     
     if(AdState==1){

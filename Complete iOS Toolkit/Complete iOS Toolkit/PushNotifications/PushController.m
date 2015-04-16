@@ -24,36 +24,42 @@ PushController* _sharedAppPush;
     }
     return self;
 }
-- (void) alerttest{
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"AppName"
-                                  message:@"Would you like to receive occasional notifications about new content, reminders & updates?"
-                                  preferredStyle:UIAlertControllerStyleAlert];
+
+-(void)CreatePush{
+
+    NSString *PushMessage;
+    int Days;
+
     
-    UIAlertAction* Button1 = [UIAlertAction
-                         actionWithTitle:@"Not Now"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    UIAlertAction* Button2 = [UIAlertAction
-                          actionWithTitle:@"OK"
-                          style:UIAlertActionStyleDefault
-                          handler:^(UIAlertAction * action)
-                          {
-                              
-                              
-                              [alert dismissViewControllerAnimated:YES completion:nil];
-                              
-                          }];
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"PushMessage"]==NULL){
+        PushMessage = @"The app has just been updated. Come check out what all is new.";
+        
+    }else{
+        PushMessage = [[NSUserDefaults standardUserDefaults] objectForKey:@"PushMessage"];
+    }
     
-    [alert addAction:Button1];
-    [alert addAction:Button2];
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"DaysUntilPush"]==NULL){
+        Days = 10;
+        
+    }else{
+        Days = [[[NSUserDefaults standardUserDefaults] objectForKey:@"DaysUntilPush"] intValue];
+    }
+    
+    // Create new UILocalNotification object.
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    // Set the date and time of the notification.
+    localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * Days];
+    
+    // Set the message body of the notification.
+    localNotification.alertBody = PushMessage;
     
     
-    [[UIApplication sharedApplication].delegate.window.rootViewController presentViewController:alert animated:YES completion:nil];
+    // Set the time zone of the notification.
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    
+    // Perform the notification.
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 -(void)AllowNotificationsAlert{
@@ -61,10 +67,9 @@ PushController* _sharedAppPush;
     NSArray *versionArray = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
     NSLog(@"%d",[[versionArray objectAtIndex:0]intValue]);
     if ([[versionArray objectAtIndex:0] intValue] >= 8) {
-        
         UIAlertController * alert=   [UIAlertController
-                                      alertControllerWithTitle:@"Nature Soundscapes: Notifications"
-                                      message:@"Would you like to receive occasional notifications about new sounds, reminders & updates?"
+                                      alertControllerWithTitle:@"Notifications"
+                                      message:@"Would you like to receive occasional notifications about new content, reminders & updates?"
                                       preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* ok = [UIAlertAction
@@ -72,7 +77,6 @@ PushController* _sharedAppPush;
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action)
                              {
-                                 //   [[UIApplication sharedApplication]  openURL:url2];
                                  [alert dismissViewControllerAnimated:YES completion:nil];
                                  
                              }];
@@ -98,9 +102,8 @@ PushController* _sharedAppPush;
         // iOS 7 and below logic
         NSLog(@"7");
         // alarmcount=3;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nature Soundscapes: Notifications"
-                                                        message:@"Would you like to receive occasional notifications about new sounds, reminders & updates?"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notifications"
+                                                        message:@"Would you like to receive occasional notifications about new content, reminders & updates?"
                                                        delegate:self
                                               cancelButtonTitle:@"Not Now"
                                               otherButtonTitles:@"OK",nil];
@@ -127,6 +130,40 @@ PushController* _sharedAppPush;
          UIRemoteNotificationTypeBadge |
          UIRemoteNotificationTypeSound];
     }
+}
+
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notification{
+    
+    
+}
+
+- (void)RemovePush{
+    NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for(UILocalNotification *notification in notificationArray){
+        
+        // Delete all notifications
+        [[UIApplication sharedApplication] cancelLocalNotification:notification] ;
+        
+        // Delete a specific notification
+//        NSArray *notificationArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+//        for(UILocalNotification *notification in notificationArray){
+//            if ([notification.alertBody isEqualToString:@"YourMessageText"]) {
+//                // delete this notification
+//                [[UIApplication sharedApplication] cancelLocalNotification:notification] ;
+//            }
+//        }
+        
+    }
+}
+
+-(BOOL)getEnabled{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return  [userDefaults boolForKey:@"PushEnabled"];
+}
+-(void)setEnabled:(BOOL)PushEnabled{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:PushEnabled forKey:@"PushEnabled"];
+    [userDefaults synchronize];
 }
 
 @end

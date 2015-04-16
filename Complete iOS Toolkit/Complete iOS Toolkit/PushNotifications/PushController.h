@@ -12,8 +12,12 @@
 @interface PushController : NSObject
 + (PushController*) sharedInstance;
 
+-(void)CreatePush;
 -(void)AllowNotificationsAlert;
 -(void)AllowNotifications;
+-(void)RemovePush;
+-(BOOL)getEnabled;
+-(void)setEnabled:(BOOL)PushEnabled;
 
 @end
 

@@ -8,15 +8,15 @@
 #import "IAPHelper.h"
 
 #define kIAPProductIdentifier1 @"com.MadCalfApps.CompleteiOSToolkit.inapp.IAP1b"
-#define kIAPProductIdentifier2 @"com.CompanyName.AppName.inapp.iap2"
-#define kIAPProductIdentifier3 @"com.CompanyName.AppName.inapp.iap3"
-#define kIAPProductIdentifier4 @"com.CompanyName.AppName.inapp.iap4"
-#define kIAPProductIdentifier5 @"com.CompanyName.AppName.inapp.iap5"
-#define kIAPProductIdentifier6 @"com.CompanyName.AppName.inapp.iap6"
-#define kIAPProductIdentifier7 @"com.CompanyName.AppName.inapp.iap7"
-#define kIAPProductIdentifier8 @"com.CompanyName.AppName.inapp.iap8"
-#define kIAPProductIdentifier9 @"com.CompanyName.AppName.inapp.iap9"
-#define kIAPProductIdentifier10 @"com.CompanyName.AppName.inapp.iap10"
+//#define kIAPProductIdentifier2 @"com.CompanyName.AppName.inapp.iap2"
+//#define kIAPProductIdentifier3 @"com.CompanyName.AppName.inapp.iap3"
+//#define kIAPProductIdentifier4 @"com.CompanyName.AppName.inapp.iap4"
+//#define kIAPProductIdentifier5 @"com.CompanyName.AppName.inapp.iap5"
+//#define kIAPProductIdentifier6 @"com.CompanyName.AppName.inapp.iap6"
+//#define kIAPProductIdentifier7 @"com.CompanyName.AppName.inapp.iap7"
+//#define kIAPProductIdentifier8 @"com.CompanyName.AppName.inapp.iap8"
+//#define kIAPProductIdentifier9 @"com.CompanyName.AppName.inapp.iap9"
+//#define kIAPProductIdentifier10 @"com.CompanyName.AppName.inapp.iap10"
 
 #define IS_IPAD() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
@@ -70,87 +70,87 @@ static IAPHelper* _sharedIAPHelper;
     [userDefaults setBool:IAP1 forKey:@"IAP1"];
     [userDefaults synchronize];
 }
--(BOOL)getIAP2{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP2"];
-}
--(void)setIAP2:(BOOL)IAP2{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP2 forKey:@"IAP2"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP3{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP3"];
-}
--(void)setIAP3:(BOOL)IAP3{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP3 forKey:@"IAP3"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP4{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP4"];
-}
--(void)setIAP4:(BOOL)IAP4{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP4 forKey:@"IAP4"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP5{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP5"];
-}
--(void)setIAP5:(BOOL)IAP5{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP5 forKey:@"IAP5"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP6{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP6"];
-}
--(void)setIAP6:(BOOL)IAP6{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP6 forKey:@"IAP6"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP7{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP7"];
-}
--(void)setIAP7:(BOOL)IAP7{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP7 forKey:@"IAP7"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP8{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP8"];
-}
--(void)setIAP8:(BOOL)IAP8{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP8 forKey:@"IAP8"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP9{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP9"];
-}
--(void)setIAP9:(BOOL)IAP9{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP9 forKey:@"IAP9"];
-    [userDefaults synchronize];
-}
--(BOOL)getIAP10{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return  [userDefaults boolForKey:@"IAP10"];
-}
--(void)setIAP10:(BOOL)IAP10{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:IAP10 forKey:@"IAP10"];
-    [userDefaults synchronize];
-}
+//-(BOOL)getIAP2{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP2"];
+//}
+//-(void)setIAP2:(BOOL)IAP2{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP2 forKey:@"IAP2"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP3{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP3"];
+//}
+//-(void)setIAP3:(BOOL)IAP3{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP3 forKey:@"IAP3"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP4{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP4"];
+//}
+//-(void)setIAP4:(BOOL)IAP4{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP4 forKey:@"IAP4"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP5{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP5"];
+//}
+//-(void)setIAP5:(BOOL)IAP5{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP5 forKey:@"IAP5"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP6{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP6"];
+//}
+//-(void)setIAP6:(BOOL)IAP6{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP6 forKey:@"IAP6"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP7{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP7"];
+//}
+//-(void)setIAP7:(BOOL)IAP7{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP7 forKey:@"IAP7"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP8{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP8"];
+//}
+//-(void)setIAP8:(BOOL)IAP8{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP8 forKey:@"IAP8"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP9{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP9"];
+//}
+//-(void)setIAP9:(BOOL)IAP9{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP9 forKey:@"IAP9"];
+//    [userDefaults synchronize];
+//}
+//-(BOOL)getIAP10{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    return  [userDefaults boolForKey:@"IAP10"];
+//}
+//-(void)setIAP10:(BOOL)IAP10{
+//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults setBool:IAP10 forKey:@"IAP10"];
+//    [userDefaults synchronize];
+//}
 
 #pragma mark - inApp PURCHASE
 -(void)purchaseIAP1{
@@ -166,114 +166,114 @@ static IAPHelper* _sharedIAPHelper;
         [self FailedAlert];
     }
 }
--(void)purchaseIAP2{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier2]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP3{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier3]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP4{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier4]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP5{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier5]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP6{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier6]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP7{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier7]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP8{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier8]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP9{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier9]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
--(void)purchaseIAP10{
-    if([SKPaymentQueue canMakePayments]){
-        CountBuy=1;
-        NSLog(@"User can make payments");
-        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier10]];
-        productsRequest.delegate = self;
-        [productsRequest start];
-        connectingView.hidden = NO;
-    }else{
-        [self FailedAlert];
-    }
-}
+//-(void)purchaseIAP2{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier2]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP3{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier3]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP4{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier4]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP5{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier5]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP6{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier6]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP7{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier7]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP8{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier8]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP9{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier9]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
+//-(void)purchaseIAP10{
+//    if([SKPaymentQueue canMakePayments]){
+//        CountBuy=1;
+//        NSLog(@"User can make payments");
+//        SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:kIAPProductIdentifier10]];
+//        productsRequest.delegate = self;
+//        [productsRequest start];
+//        connectingView.hidden = NO;
+//    }else{
+//        [self FailedAlert];
+//    }
+//}
 
 -(void)FailedAlert{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops."
@@ -424,33 +424,33 @@ static IAPHelper* _sharedIAPHelper;
         [self purchasedCompleteIAP1];
     }
     
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier2]) {
-        [self purchasedCompleteIAP2];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier3]) {
-        [self purchasedCompleteIAP3];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier4]) {
-        [self purchasedCompleteIAP4];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier5]) {
-        [self purchasedCompleteIAP5];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier6]) {
-        [self purchasedCompleteIAP6];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier7]) {
-        [self purchasedCompleteIAP7];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier8]) {
-        [self purchasedCompleteIAP8];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier9]) {
-        [self purchasedCompleteIAP9];
-    }
-    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier10]) {
-        [self purchasedCompleteIAP10];
-    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier2]) {
+//        [self purchasedCompleteIAP2];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier3]) {
+//        [self purchasedCompleteIAP3];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier4]) {
+//        [self purchasedCompleteIAP4];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier5]) {
+//        [self purchasedCompleteIAP5];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier6]) {
+//        [self purchasedCompleteIAP6];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier7]) {
+//        [self purchasedCompleteIAP7];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier8]) {
+//        [self purchasedCompleteIAP8];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier9]) {
+//        [self purchasedCompleteIAP9];
+//    }
+//    if ([transaction.payment.productIdentifier isEqualToString:kIAPProductIdentifier10]) {
+//        [self purchasedCompleteIAP10];
+//    }
 }
 
 -(void)purchasedCompleteIAP1{
@@ -463,96 +463,96 @@ static IAPHelper* _sharedIAPHelper;
                                           otherButtonTitles:nil];
     [alert show];
 }
--(void)purchasedCompleteIAP2{
-    [self setIAP2:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP3{
-    [self setIAP3:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP4{
-    [self setIAP4:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP5{
-    [self setIAP5:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP6{
-    [self setIAP6:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP7{
-    [self setIAP7:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP8{
-    [self setIAP8:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP9{
-    [self setIAP9:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
--(void)purchasedCompleteIAP10{
-    [self setIAP10:YES];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
-                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
+//-(void)purchasedCompleteIAP2{
+//    [self setIAP2:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP3{
+//    [self setIAP3:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP4{
+//    [self setIAP4:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP5{
+//    [self setIAP5:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP6{
+//    [self setIAP6:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP7{
+//    [self setIAP7:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP8{
+//    [self setIAP8:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP9{
+//    [self setIAP9:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
+//-(void)purchasedCompleteIAP10{
+//    [self setIAP10:YES];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success!"
+//                                                    message:@"Thanks for your support. Now, go play some more Tiny Drums Ad-Free!"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//}
 
 
 

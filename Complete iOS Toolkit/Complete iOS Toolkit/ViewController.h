@@ -35,11 +35,13 @@
     BOOL MenuShow;
     NSArray *SettingsArray;
     NSArray *MenuArray;
+    NSArray *AlertArray;
+
     NSMutableArray *ContentArray;
     NSString *AppNameString;
     NSString *AlertMessageString;
 
-
+    int AlertSelected;
     int AdState;
     int MenuItems;
     BOOL PreiOS8;

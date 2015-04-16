@@ -2,10 +2,12 @@
   "AppSettings": [
                   {
                     "AppName":"My App Name",
-                    "HeaderColor":"8",
+                    "HeaderColor":"3",
                     "HeaderLabel":"My App",
                     "TagLine":"NICK CULBERTSON\nDallas App Developers",
-                    "MenuItems":"9"
+                    "MenuItems":"8",
+                    "AdmobAdEnabled":"true",
+                    "AdmobAdID":"ca-app-pub-0325717490228488/1458343033",
                   },
                   {
                     "CustomColorR":"0",
@@ -13,11 +15,20 @@
                     "CustomColorB":"40",
                     "CustomColorRShadow":"15",
                     "CustomColorGShadow":"140",
-                    "CustomColorBShadow":"20"
+                    "CustomColorBShadow":"20",
                   },
                   {
                     "AlertTitle":"My Settings",
                     "AlertMessage":"Thanks for checking out the app. Enjoy!",
+                    "AlertItems":"5",
+                  },
+                  {
+                    "PushMessage":"AppName has just been updated. See what you have been missing.",
+                    "DaysUntilPush":"10",
+                  },
+                  {
+                    "IAPMessage":"AppName has just been updated. See what you have been missing.",
+                    "DaysUntilPush":"10",
                   },
                 ],
     "MenuItems": [
@@ -52,11 +63,6 @@
                     "MenuURL":"rate"
                   },
                   {
-                    "MenuTitle":"Alert",
-                    "MenuLabel":"My Alert",
-                    "MenuURL":"alert"
-                  },
-                  {
                     "MenuTitle":"Notifications",
                     "MenuLabel":"My Notification",
                     "MenuURL":"notification"
@@ -69,49 +75,24 @@
                 ],
     "AlertItems": [
                   {
-                    "AlertTitle":"Twitter",
-                    "AlertButton":"My Twitter",
+                    "AlertButton":"Twitter",
                     "AlertURL":"http://www.twitter.com/madcalfapps"
                   },
                   {
-                    "AlertTitle":"Google",
-                    "AlertButton":"My Google",
-                    "AlertURL":"http://www.google.com"
+                    "AlertButton":"Remove Ads",
+                    "AlertURL":"iap"
                   },
                   {
-                    "AlertTitle":"Facebook",
-                    "AlertButton":"My Facebook",
-                    "AlertURL":"https://www.facebook.com/pages/Mad-Calf-Apps/179369155500535?fref=nf"
-                  },
-                  {
-                    "AlertTitle":"Youtube",
-                    "AlertButton":"My Youtube",
-                    "AlertURL":"http://www.youtube.com/madcalfapps"
-                  },
-                  {
-                    "AlertTitle":"Weather",
-                    "AlertButton":"Dallas Weather",
-                    "AlertURL":"http://m.weather.com/weather/tenday/l/Dallas+TX+USTX0327:1:US"
-                  },
-                  {
-                    "AlertTitle":"Rate",
-                    "AlertButton":"Rate",
+                    "AlertButton":"Rate This App",
                     "AlertURL":"rate"
                   },
                   {
-                    "AlertTitle":"Alert",
-                    "AlertButton":"My Alert",
-                    "AlertURL":"alert"
-                  },
-                  {
-                    "AlertTitle":"Notifications",
-                    "AlertButton":"My Notification",
+                    "AlertButton":"Notifications",
                     "AlertURL":"notification"
                   },
                   {
-                    "AlertTitle":"In App Purchase",
-                    "AlertButton":"My IAP",
-                    "AlertURL":"iap"
+                    "AlertButton":"Thanks! Maybe Later",
+                    "AlertURL":"cancel"
                   },
                   ],
 }
