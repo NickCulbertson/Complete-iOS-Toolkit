@@ -32,7 +32,6 @@
 		5A8E3B321ADCA67300D80401 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A8E3B2F1ADCA67300D80401 /* iRate.bundle */; };
 		5A8E3B331ADCA67300D80401 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8E3B311ADCA67300D80401 /* iRate.m */; };
 		5A8E3B391ADCA69800D80401 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5A8E3B361ADCA69800D80401 /* README.txt */; };
-		5AD67D0F1AE050EF0021889E /* libAdapterIAd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8E3B351ADCA69800D80401 /* libAdapterIAd.a */; };
 		5AD922901ADAD7C00004D0C7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD9228F1ADAD7C00004D0C7 /* AdSupport.framework */; };
 		5AD922921ADAD7CD0004D0C7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD922911ADAD7CD0004D0C7 /* AudioToolbox.framework */; };
 		5AD922941ADAD7D50004D0C7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD922931ADAD7D50004D0C7 /* AVFoundation.framework */; };
@@ -124,7 +123,6 @@
 				5AD9229E1ADAD8080004D0C7 /* EventKitUI.framework in Frameworks */,
 				5AD9229A1ADAD7FD0004D0C7 /* CoreTelephony.framework in Frameworks */,
 				5AD922981ADAD7EF0004D0C7 /* CoreMedia.framework in Frameworks */,
-				5AD67D0F1AE050EF0021889E /* libAdapterIAd.a in Frameworks */,
 				5AD922961ADAD7E50004D0C7 /* CoreGraphics.framework in Frameworks */,
 				5AD922941ADAD7D50004D0C7 /* AVFoundation.framework in Frameworks */,
 				5AD922921ADAD7CD0004D0C7 /* AudioToolbox.framework in Frameworks */,
