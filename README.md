@@ -7,7 +7,7 @@ This project includes the implementation of some of the most popular iOS native 
 ######• Rate This App
 ######• JSON Data Storage
 
-## Instal Instructions
+## Install Instructions
 1. Click the "Download Zip" button on the right side of your screen.
 2. Open the xcode project file.
 3. Find the GoogleMobileAds.Framework & libAdapterIAd.a files in the project navigator on the left hand side of xcode.
@@ -130,7 +130,7 @@ This project includes the implementation of some of the most popular iOS native 
 10 = Custom Color //Set by "CustomColor" options</code></pre>
 
 
-###MenuURL enter one of the following options:
+###MenuURL & AlertURL enter one of the following options:
 <pre><code>"http://..." to open a webpage in a webview
 "home" to return to the landing page
 "rate" for a rate prompt
