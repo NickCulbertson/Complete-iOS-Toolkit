@@ -7,6 +7,13 @@ This project includes the implementation of some of the most popular iOS native 
 ######• Rate This App
 ######• JSON Data Storage
 
+## Instal Instructions
+1. Click the "Download Zip" button on the right side of your screen.
+2. Open the xcode project file.
+3. Find the GoogleMobileAds.Framework & libAdapterIAd.a files in the project navigator on the left hand side of xcode.
+4. Select the file and check the box on the right hand side of the screen under Target Membership that says Complete iOS Toolkit. (This will relink the libraries) 
+5. Now Build & Run
+
 ## Edit "local.json" to customize the app.
 
 ######"local.json" Key
@@ -18,6 +25,8 @@ This project includes the implementation of some of the most popular iOS native 
                     "HeaderLabel":"My App", //This is the title that will show in the header of the home screen
                     "TagLine":"NICK CULBERTSON\nDallas App Developers", //This is the label under the logo (type "\n" for a line break like "line one \n line two"
                     "MenuItems":"8" //Enter the # of menu options you want. Note: The number cannot exceed the number of menu items listed bellow.
+                    "AdmobAdEnabled":"true",//Enable Admob ads (they can still be removed with IAP)
+                    "AdmobAdID":"ca-app-pub-0325717490228488/1458343033", //Enter your Admob ID
                   },
                   {
                     "CustomColorR":"0", //For custom colors enter values between 0-255. Higher values increase saturation of that color.
@@ -28,8 +37,17 @@ This project includes the implementation of some of the most popular iOS native 
                     "CustomColorBShadow":"20"
                   },
                   { //This is where you enter text for the settings alertview.
-                    "AlertTitle":"My Settings",
-                    "AlertMessage":"Thanks for checking out the app. Enjoy!",
+                    "AlertTitle":"My Settings", //Alert Title
+                    "AlertMessage":"Thanks for checking out the app. Enjoy!", //Alert Message
+                    "AlertItems":"5", // Number of Alert Buttons (can't exceed the number of AlertItems
+                  },
+                  {
+                    "PushMessage":"The App has just been updated. See what you have been missing.",
+                    "DaysUntilPush":"10", //Days until the push notification is sent
+                  },
+                  {
+                    "IAPMessage":"Enter Prompt",
+                    "IAPID":"10",
                   },
                 ],
     "MenuItems": [ //These are the menu items in the menu bar.
@@ -64,11 +82,6 @@ This project includes the implementation of some of the most popular iOS native 
                     "MenuURL":"rate" //"rate" takes the user to your app in the store
                   },
                   {
-                    "MenuTitle":"Alert",
-                    "MenuLabel":"My Alert",
-                    "MenuURL":"alert" 
-                  },
-                  {
                     "MenuTitle":"Notifications",
                     "MenuLabel":"My Notification",
                     "MenuURL":"notification" //"notification" to enable or disable notifications
@@ -81,49 +94,24 @@ This project includes the implementation of some of the most popular iOS native 
                 ],
     "AlertItems": [
                   {
-                    "AlertTitle":"Twitter",
-                    "AlertButton":"My Twitter",
+                    "AlertButton":"Twitter", //Alert Button Title
                     "AlertURL":"http://www.twitter.com/madcalfapps"
                   },
                   {
-                    "AlertTitle":"Google",
-                    "AlertButton":"My Google",
-                    "AlertURL":"http://www.google.com"
+                    "AlertButton":"Remove Ads",
+                    "AlertURL":"iap"
                   },
                   {
-                    "AlertTitle":"Facebook",
-                    "AlertButton":"My Facebook",
-                    "AlertURL":"https://www.facebook.com/pages/Mad-Calf-Apps/179369155500535?fref=nf"
-                  },
-                  {
-                    "AlertTitle":"Youtube",
-                    "AlertButton":"My Youtube",
-                    "AlertURL":"http://www.youtube.com/"
-                  },
-                  {
-                    "AlertTitle":"Weather",
-                    "AlertButton":"Dallas Weather",
-                    "AlertURL":"http://m.weather.com/weather/tenday/l/Dallas+TX+USTX0327:1:US"
-                  },
-                  {
-                    "AlertTitle":"Rate",
-                    "AlertButton":"Rate",
+                    "AlertButton":"Rate This App",
                     "AlertURL":"rate"
                   },
                   {
-                    "AlertTitle":"Alert",
-                    "AlertButton":"My Alert",
-                    "AlertURL":"alert"
-                  },
-                  {
-                    "AlertTitle":"Notifications",
-                    "AlertButton":"My Notification",
+                    "AlertButton":"Notifications",
                     "AlertURL":"notification"
                   },
                   {
-                    "AlertTitle":"In App Purchase",
-                    "AlertButton":"My IAP",
-                    "AlertURL":"iap"
+                    "AlertButton":"Thanks! Maybe Later",
+                    "AlertURL":"cancel"
                   },
                   ],
 }</code></pre>
@@ -172,4 +160,8 @@ This project includes the implementation of some of the most popular iOS native 
 
 In the app delegate you can change the number of days and uses until the rate prompt will show.
 For full documentation on this refer to Nick Lockwood's iRate. https://github.com/nicklockwood/iRate
+
+# JSON Data
+
+This feature is in Beta. To experiment with it, comment in the code [self GetRemoteJSON]; in the bottom of the - (void)fetchedDataLocal method in ViewController.m. Then set your server jsonURL to #define kjsonURL [NSURL URLWithString: @"http://yourwebsite.com/remote.json"]
 
