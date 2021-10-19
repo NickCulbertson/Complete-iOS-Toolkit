@@ -1,11 +1,14 @@
 # Complete-iOS-Toolkit
+
+(This Project is super outdated now. It might still have some useful bits for people using Objective-C in iOS.)
+
 This project includes the implementation of some of the most popular iOS native features including: 
 
-######• Push Notifications
-######• Ad Banners (Admob) 
-######• In-App Purchases
-######• Rate This App
-######• JSON Data Storage
+• Push Notifications
+• Ad Banners (Admob) 
+• In-App Purchases
+• Rate This App
+• JSON Data Storage
 
 ## Install Instructions
 1. Click the "Download Zip" button on the right side of your screen.
@@ -15,7 +18,7 @@ This project includes the implementation of some of the most popular iOS native 
 
 ## Edit "local.json" to customize the app.
 
-######"local.json" Key
+"local.json" Key
 <pre><code>{
   "AppSettings": [
                   {
